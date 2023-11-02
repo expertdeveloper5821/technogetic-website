@@ -1,0 +1,104 @@
+@import '../../../styles/globals.scss';
+@import '../../../styles/variables';
+
+.main-conatiner {
+        background-color: $bg-color;
+        background-image: url('https://templatekits.themewarrior.com/solvero/wp-content/uploads/sites/65/2022/09/dot-pattern-1.png');
+        background-position: top right;
+    background-repeat: no-repeat;
+}
+.main-head{
+    width: 55%;
+}
+.conatiner , .services{
+    max-width: 1170px;
+    display: flex;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+}
+.main-head h6{
+    margin-bottom: 16px;
+    font-size: 13px;
+    font-family: $bs-work-sans-font-family;
+    font-style: normal;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: $blue-color;
+}
+
+.main-head h1, .box-title h3{
+    font-size: 60px;
+    font-family: $bs-work-sans-font-family;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 1.111em;
+    margin-bottom: 16px;
+    color: $white-color;
+}
+
+.main-head p{
+    font-size: 16px;
+    font-family: $bs-work-sans-font-family;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1.5em;
+    margin-bottom: 16px;
+    color: #FFFFFF99;
+    margin-bottom: 32px;
+}
+.box-title{
+    display: flex;
+}
+
+.box-title h3 {
+    max-width: 75%;
+}
+
+.box {
+    background-color: #333787;
+    transition: 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+}
+.box, .box-two{
+    width: 50%;   
+    padding: 64px 64px 64px 64px;
+}
+
+.custom-btn {
+    border-style: solid;
+    border-width: 0px 0px 0px 0px;
+    border-radius: 100px 100px 100px 100px;
+    padding: 16px 32px 16px 32px;
+    background-color: #fff;
+    color: #000;
+    font-weight: bold;
+    font-family: sans-serif;
+    font-family: $bs-work-sans-font-family;
+    font-style: normal;
+}
+
+.services-box{
+    display: flex;
+}
+
+.box-two{
+  background-color: #343657;
+}
+
+.box-two p, .box p {
+    color: $white-color;
+    margin-bottom: 32px;
+    line-height: 1.5em;
+} 
+
+// .box{
+//   transform: translateY(0);
+//   opacity: 1;
+// //   transition: 2s all ease;
+// }
+
+// .box.active{
+//     transform: translateY(150px);
+//     opacity: 0;
+//     transition: 1s all ease;
+//   }

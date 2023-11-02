@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@700&display=swap');
+
+
+
+
+/* Set up breakpoints */
+$breakpoint-xSmall: 414px;
+$breakpoint-xs: 680px;
+$breakpoint-tab: 769px;
+$breakpoint-sm: 900px;
+$breakpoint-tab: 768px;
+$breakpoint-sm: 900px;
+$breakpoint-md: 968px;
+$breakpoint-ms: 1024px;
+$breakpoint-lg: 1200px;
+$breakpoint-xlg: 1440px;
+
+// font family
+$bs-work-sans-font-family:Work Sans;
+
+
+
+// Theme Color Variables
+$white-color: #ffffff;
+$bg-color: #0e0f20;
+$blue-color:#0388d8;
+
+:export {
+    //Text Colors
+  
+    primaryColor: $white-color;
+    aboutBgColor: $bg-color;
+    blurColor: $blue-color;
+  }
+  

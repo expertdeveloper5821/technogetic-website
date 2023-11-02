@@ -1,0 +1,60 @@
+@import '../../../styles/globals.scss';
+@import '../../../styles/variables';
+
+
+.banner-section {
+    background-image: url('../../../../public/assets/banner/hero-home.jpg');
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.banner-section h1{   
+    color: $white-color;
+    font-family: $bs-work-sans-font-family;
+    font-style: normal;
+}
+
+.banner-title{
+    width: 1183px;
+    margin-right: auto;
+    margin-left: auto;
+    position: relative;
+    color: #fff;
+   
+}
+
+.head-title{
+    width: 60%;
+    font-size: 72px;
+    margin-bottom: 32px;
+}
+
+.banner-para{
+    margin: 0px 0px -32px 0px;
+    margin-bottom: 32px;
+}
+.banner-para p {
+    color: #fff;
+    margin-bottom: 32px;
+    font-size: 20px;
+    width: 60%;
+}
+
+.custom-btn {
+    border-style: solid;
+    border-width: 0px 0px 0px 0px;
+    border-radius: 100px 100px 100px 100px;
+    padding: 16px 32px 16px 32px;
+    background-color: #db364700;
+    color: #ffffff;
+    font-weight: bold;
+    font-family: sans-serif;
+    border: 2px solid;
+    font-family: $bs-work-sans-font-family;
+    font-style: normal;
+}
+.banner-subsection{
+    background-color: #0088d175;
+    padding: 225px 0px 150px 0px;
+}
