@@ -1,16 +1,17 @@
 @import '../../../styles/globals.scss';
 @import '../../../styles/variables';
 
-.main-conatiner {
+.main-container {
         background-color: $bg-color;
         background-image: url('https://templatekits.themewarrior.com/solvero/wp-content/uploads/sites/65/2022/09/dot-pattern-1.png');
         background-position: top right;
     background-repeat: no-repeat;
+    padding: 0px 0px 100px 0px;
 }
 .main-head{
     width: 55%;
 }
-.conatiner , .services{
+.container , .services{
     max-width: 1170px;
     display: flex;
     margin-right: auto;
@@ -90,15 +91,3 @@
     margin-bottom: 32px;
     line-height: 1.5em;
 } 
-
-// .box{
-//   transform: translateY(0);
-//   opacity: 1;
-// //   transition: 2s all ease;
-// }
-
-// .box.active{
-//     transform: translateY(150px);
-//     opacity: 0;
-//     transition: 1s all ease;
-//   }
