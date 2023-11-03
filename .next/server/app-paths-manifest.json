@@ -1,11 +1,3 @@
 {
-  "/_not-found": "app/_not-found.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/landingPage/aboutSection/page": "app/landingPage/aboutSection/page.js",
-  "/landingPage/bannerSection/page": "app/landingPage/bannerSection/page.js",
-  "/landingPage/clientSection/page": "app/landingPage/clientSection/page.js",
-  "/landingPage/page": "app/landingPage/page.js",
-  "/landingPage/serviceSection/page": "app/landingPage/serviceSection/page.js",
   "/page": "app/page.js"
 }

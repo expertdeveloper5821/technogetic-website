@@ -3,7 +3,7 @@
 
 
 .banner-section {
-    background-image: url('../../../../public/assets/banner/hero-home.jpg');
+    background-image: url('https://res.cloudinary.com/dh2lkjd5n/image/upload/v1698983590/hero-home_oy8rkb.jpg');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -55,6 +55,75 @@
     font-style: normal;
 }
 .banner-subsection{
-    background-color: #0088d175;
+    background-color: rgb(0 0 0 / 57%);;
     padding: 225px 0px 150px 0px;
+}
+
+
+// .head-title{animation:fadeInUp 1s ease backwards;}
+// @keyframes fadeInUp{
+//   0%{transform:translate(0px, 100px); opacity: 0;}
+
+//   100%{transform:translate(0px, 0); opacity: 1;}
+// }
+
+.header-btn:hover{
+    -webkit-animation: mover 1s infinite alternate;
+    animation: mover 1s infinite alternate;
+  }
+  .header-btn:hover {
+    -webkit-animation: mover 1s infinite alternate;
+    animation: mover 1s infinite alternate;
+  }
+  @-webkit-keyframes mover {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-10px);
+    }
+  }
+  @keyframes mover {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-10px);
+    }
+  }
+
+
+  @keyframes fadeInUp {
+    from {
+        transform: translate3d(0,40px,0)
+    }
+
+    to {
+        transform: translate3d(0,0,0);
+        opacity: 1
+    }
+}
+
+@-webkit-keyframes head-title {
+    from {
+        transform: translate3d(0,40px,0)
+    }
+
+    to {
+        transform: translate3d(0,0,0);
+        opacity: 1
+    }
+}
+
+.head-title {
+    animation-duration: 5s;
+    animation-fill-mode: both;
+    -webkit-animation-duration: 5s;
+    -webkit-animation-fill-mode: both
+}
+
+.head-title {
+    opacity: 0;
+    animation-name: fadeInUp;
+    -webkit-animation-name: fadeInUp;
 }

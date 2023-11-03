@@ -5,8 +5,8 @@ import CommonButton from "@/components/buttonComponent/page";
 
 const ServiceSection = () => {
   return (
-    <div className={styles["main-conatiner"]}>
-      <div className={styles["conatiner"]}>
+    <div className={styles["main-container"]}>
+      <div className={styles["container"]}>
         <div className={styles["main-head"]}>
           <h6>Services</h6>
           <h1>Our Services</h1>
