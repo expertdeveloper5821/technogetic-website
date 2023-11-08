@@ -1,6 +1,6 @@
-import User from '@/pages/api/models/user';
+import User from '../models/user';
 import jwt from "jsonwebtoken";
-import connect from '@/pages/api/config/db';
+import connect from '../config/db';
 import bcrypt from 'bcryptjs';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { environmentConfig } from "../config/environmentConfig";

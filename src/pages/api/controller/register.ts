@@ -1,5 +1,5 @@
-import User from '@/pages/api/models/user';
-import connect from '@/pages/api/config/db';
+import User from '../models/user';
+import connect from '../config/db';
 import bcrypt from 'bcryptjs';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { v4 as uuidv4 } from "uuid";
