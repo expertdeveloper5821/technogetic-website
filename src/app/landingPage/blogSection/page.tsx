@@ -17,7 +17,7 @@ const Blog = () => {
               magna facilisi
             </p>
           </div>
-          <div className={styles["work-btn"]}>
+          {/* <div className={styles["work-btn"]}>
             <div className={styles["header-btn"]}>
               <CommonButton
                 text="View All Blog"
@@ -25,7 +25,7 @@ const Blog = () => {
                 className={styles["work-button"]}
               />
             </div>
-          </div>
+          </div> */}
         </div>
         <div className={styles["services"]}>
           <div className={styles["services-box"]}>

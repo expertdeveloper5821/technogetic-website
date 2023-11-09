@@ -1,5 +1,5 @@
 @import "../../styles/globals.scss";
-@import "../../styles/variables";
+@import "../../styles/_variables";
 
 .nav-bar {
   display: flex;
@@ -9,13 +9,12 @@
   margin-right: auto;
   margin-left: auto;
   position: relative;
-  margin-bottom: -97px;
 }
 
 .header {
   display: flex;
   justify-content: space-between;
-  width: 1000px;
+  width: 92%;
 }
 .menu {
   padding: 15px 0px;
@@ -25,12 +24,11 @@
   display: flex;
   list-style-type: none;
   gap: 28px;
-  
 }
 
 .menu .menu-list li {
   font-weight: bold;
-  color: #fff;
+  color: #000;
 }
 
 .navbar {
@@ -62,6 +60,8 @@
   color: #ffffff;
   font-weight: bold;
   font-family: sans-serif;
+  margin: 0px 20px;
+  font-size: 16px;
 }
 @keyframes bounce {
   0%,
@@ -109,3 +109,166 @@
     transform: translateY(-10px);
   }
 }
+
+//footer section
+// .footer-container {
+//   background-color: #333787;
+// }
+
+.news-letter {
+  background-image: url("https://res.cloudinary.com/dh2lkjd5n/image/upload/v1699009453/dot-pattern-1_mfzfc8.png");
+  background-position: top left;
+  background-repeat: no-repeat;
+
+  background-color: #e2e5f2;
+  margin-top: -190px;
+  margin-bottom: 0px;
+  z-index: 2;
+  display: flex;
+}
+.subscribe-text h2,
+.subscribe-text h6 {
+  font-family: $bs-work-sans-font-family;
+  font-style: normal;
+}
+.subscribe-text {
+  width: 45%;
+  padding: 64px 16px 64px 64px;
+}
+
+.demo {
+  display: flex;
+  background-image: url("https://res.cloudinary.com/dh2lkjd5n/image/upload/v1699012804/shape-1_wkpc6n.png");
+  background-position: top left;
+  background-repeat: no-repeat;
+}
+.subscribe-text h2 {
+  font-size: 54px;
+  color: #0e0f20;
+}
+
+.subscribe-text h6 {
+  font-size: 16px;
+  margin-bottom: 16px;
+  color: #00b9c5;
+}
+
+.container {
+  max-width: 1170px;
+  // display: flex;
+  margin-right: auto;
+  margin-left: auto;
+  position: relative;
+}
+
+.subscribe-form {
+  width: 55%;
+  padding: 64px 64px 64px 16px;
+}
+
+.subscribe-form h3 {
+  margin-bottom: 16px;
+  color: #333787;
+  font-family: $bs-work-sans-font-family;
+  font-size: 30px;
+}
+
+.subscribe-form p {
+  margin-bottom: 32px;
+}
+
+.input {
+  background-color: #ffffff;
+  border-style: solid;
+  border-width: 1px 1px 1px 1px;
+  border-color: var(--e-global-color-88f848e);
+  border-radius: 0px 0px 0px 0px;
+  padding: 14px 16px 14px 16px;
+  width: 60%;
+  border-color: #e2e5f2;
+}
+
+.form {
+  display: flex;
+}
+
+.footer {
+  margin: 54px 0px;
+  display: flex;
+}
+
+.footer-column {
+  width: 40%;
+}
+
+.footer-contact {
+  padding: 0px 50px 0px 0px;
+}
+
+.footer-contact,
+.footer-information,
+.footer-service {
+  width: 25%;
+}
+
+.footer-column {
+  padding: 0px 80px 0px 0px;
+}
+
+.footer-contact h3,
+.footer-information h3,
+.footer-service h3 {
+  padding-bottom: 32px;
+}
+
+.info h6,
+.footer-contact p {
+  padding-bottom: 12px;
+}
+
+.info h6 {
+  font-size: 15px;
+}
+.footer-column p {
+  margin-bottom: 12px;
+}
+
+.footer-img {
+  margin-bottom: 32px;
+}
+
+.footer-information ul li,
+.footer-service ul li {
+  list-style: none;
+  margin-bottom: 16px;
+}
+
+// reponsive
+.menu-button {
+  display: none; /* Hide the button by default */
+
+  @media (max-width: 768px) {
+    display: block; /* Show the button on screens <= 768px */
+  }
+}
+
+.menu-list {
+  @media (max-width: 768px) {
+    flex-direction: column; /* Change to a column layout on screens <= 768px */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+  }
+
+  &.open {
+    max-height: 200px; /* Adjust the maximum height as needed */
+  }
+
+  li {
+    @media (max-width: 768px) {
+      margin: 10px 0; /* Add margin on smaller screens */
+    }
+  }
+}
+
+/* ... Your other styles ... */

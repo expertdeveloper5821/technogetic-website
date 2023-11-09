@@ -16,7 +16,7 @@ const WorkSection = () => {
             facilisi
           </p>
         </div>
-        <div className={styles["work-btn"]}>
+        {/* <div className={styles["work-btn"]}>
           <div className={styles["header-btn"]}>
             <CommonButton
               text="All Our Work"
@@ -24,7 +24,7 @@ const WorkSection = () => {
               className={styles["work-button"]}
             />
           </div>
-        </div>
+        </div> */}
       </div>
       <div className={styles["services"]}>
         <div className={styles["services-box"]}>
