@@ -9,6 +9,14 @@
 }
 .main-head {
   width: 55%;
+  @media screen and (max-width: $breakpoint-tab) {
+    width: 100%;
+    padding: 32px 16px 22px 16px;
+  }
+  @media screen and (max-width: $breakpoint-xSmall) {
+    width: 100%;
+    padding: 32px 16px 22px 16px;
+  }
 }
 .container,
 .services {
@@ -17,6 +25,12 @@
   margin-right: auto;
   margin-left: auto;
   position: relative;
+  @media screen and (max-width: $breakpoint-tab) {
+    flex-direction: column;
+  }
+  @media screen and (max-width: $breakpoint-xSmall) {
+    flex-direction: column;
+  }
 }
 
 .main-head h6,
@@ -33,6 +47,12 @@
 .main-head h1,
 .box-title h3 {
   font-size: 60px;
+  @media screen and (max-width: $breakpoint-tab) {
+    font-size: 35px;
+  }
+  @media screen and (max-width: $breakpoint-xSmall) {
+    font-size: 35px;
+  }
 }
 
 .main-head h1,
@@ -104,6 +124,14 @@
   padding: 32px 0px 0px 0px;
   width: 50%;
   margin: 10px 10px;
+  @media screen and (max-width: $breakpoint-tab) {
+    width: 94%;
+    margin: 10px 10px;
+  }
+  @media screen and (max-width: $breakpoint-xSmall) {
+    width: 94%;
+    margin: 10px 10px;
+  }
 }
 
 .box-two {
@@ -141,10 +169,15 @@
 .testimonial-section {
   background-color: #0e0f20;
   opacity: 0.9;
-  transition:
-    border-radius 0.3s,
-    opacity 0.3s;
   padding: 100px 0px 100px 0px;
+  
+  @media screen and (max-width: $breakpoint-tab) {
+    padding: 20px 0px 100px 0px;
+  }
+
+  @media screen and (max-width: $breakpoint-xSmall) {
+    padding: 20px 0px 100px 0px;
+  }
 }
 
 .client-details {
