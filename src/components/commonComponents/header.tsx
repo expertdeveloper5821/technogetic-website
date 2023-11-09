@@ -15,8 +15,14 @@ const Header = () => {
   return (
     <div className={styles['nav-bar']}>
       <div className={styles['header']}>
+      <div className={styles['toggle-menu']}>
+        <button onClick={toggleMenu} className={styles['menu-button']}>
+           <Image src="/assets/menu.png" width={50} height={50} alt="about us" layout="responsive" />
+          </button>
+        </div>
         <div className={styles['logo']}>
           <Image alt="logo" src="/assets/logo/logo.png" width={100} height={50} />
+          
         </div>
         <div className={styles['menu']}>
          
@@ -31,11 +37,12 @@ const Header = () => {
         </div>
         <div className={styles['header-btn']}>
           <CommonButton text="Primary Button" type="primary" className={styles['custom-btn']} />
+          
         </div>
-        <button onClick={toggleMenu} className={styles['menu-button']}>
-            Menu
-          </button>
+        
+       
       </div>
+     
     </div>
   );
 };

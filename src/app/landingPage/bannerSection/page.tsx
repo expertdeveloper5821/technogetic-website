@@ -1,13 +1,19 @@
+"use client";
 import React from "react";
 import styles from "@/app/landingPage/bannerSection/style.module.scss";
 import CommonButton from "@/components/buttonComponent/page";
-
+import { useInView } from 'react-intersection-observer';
+  
 const BannerSection = () => {
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+  });
   return (
     <div className={styles["banner-section"]}>
       <div className={styles["banner-subsection"]}>
-        <div className={styles["banner-title"]}>
-          <h1 className={styles["head-title"]}>
+        <div className={styles["banner-title"]} ref={ref}>
+          <h1 className={inView ? styles["head-title"]: ""}>
             Quality Digital Services You Really Need!
           </h1>
           <div className={styles["banner-para"]}>

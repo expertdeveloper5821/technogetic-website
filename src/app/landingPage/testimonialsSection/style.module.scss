@@ -1,7 +1,7 @@
 @import "../../../styles/globals.scss";
 @import "../../../styles/_variables";
 
-.main-container { 
+.main-container {
   background-image: url("https://res.cloudinary.com/dh2lkjd5n/image/upload/v1698927920/testimonial-bg_prco15.jpg");
   background-position: center center;
   background-repeat: no-repeat;
@@ -30,15 +30,14 @@
   color: $blue-color;
 }
 
-
-
 .main-head h1,
 .box-title h3 {
   font-size: 60px;
 }
 
 .main-head h1,
-.box-title h3, .work-title h2 {
+.box-title h3,
+.work-title h2 {
   font-family: $bs-work-sans-font-family;
   font-style: normal;
   font-weight: bold;
@@ -47,11 +46,11 @@
 }
 
 .main-head h1,
-.box-title h3{
+.box-title h3 {
   color: $white-color;
 }
 
-.work-title h2{
+.work-title h2 {
   color: #0e0f20;
   font-size: 32px;
 }
@@ -84,9 +83,8 @@
     0.3s,
     border 0.3s,
     border-radius 0.3s,
-    box-shadow 0.3s;      
+    box-shadow 0.3s;
 }
-
 
 .custom-btn {
   border-style: solid;
@@ -115,7 +113,7 @@
 .box p {
   margin-bottom: 32px;
   font-size: 16px;
-  color: #0E0F2099;
+  color: #0e0f2099;
   font-family: $bs-work-sans-font-family;
   line-height: 1.5em;
 }
@@ -140,41 +138,40 @@
   font-style: normal;
 }
 
-.testimonial-section{
+.testimonial-section {
   background-color: #0e0f20;
   opacity: 0.9;
-  transition: border-radius 0.3s, opacity 0.3s;
+  transition:
+    border-radius 0.3s,
+    opacity 0.3s;
   padding: 100px 0px 100px 0px;
 }
 
-
-.client-details{
+.client-details {
   display: flex;
   align-content: center;
 }
 
-.client-name{
+.client-name {
   padding: 16px 0px 0px 30px;
 }
 
-
-.client-name h5{
+.client-name h5 {
   font-family: $bs-work-sans-font-family;
   margin-bottom: 8px;
   font-size: 20px;
   color: #0e0f20;
 }
 
-.client-name h6{
+.client-name h6 {
   color: #00b9c5;
   font-size: 13px;
   font-family: $bs-work-sans-font-family;
   letter-spacing: 4px;
 }
 
-
 //animation css
-.header-btn:hover{
+.header-btn:hover {
   -webkit-animation: mover 1s infinite alternate;
   animation: mover 1s infinite alternate;
 }
@@ -196,5 +193,34 @@
   }
   100% {
     transform: translateY(-10px);
+  }
+}
+
+.main-head .main-heading {
+  animation: fadeInDown 5s ease forwards;
+}
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.services-box {
+  animation: fadeInUp 3s ease forwards;
+}
+
+@keyframes fadeInUp {
+  0% {
+    transform: translate(0px, 100px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0px, 0);
+    opacity: 1;
   }
 }

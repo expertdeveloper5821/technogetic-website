@@ -1,32 +1,15 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import styles from "./styles.module.scss";
 import Image from "next/image";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
 import CommonButton from "@/components/buttonComponent/page";
+import { useInView } from "react-intersection-observer";
 
 const AboutSection = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  const handleScroll = () => {
-    const element = document.querySelector(".hideme");
-
-    if (element) {
-      const rect = element.getBoundingClientRect();
-      const windowHeight = window.innerHeight;
-      if (rect.top < windowHeight) {
-        setIsVisible(true);
-      }
-    }
-  };
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+  });
 
   return (
     <div>
@@ -35,7 +18,7 @@ const AboutSection = () => {
           <div className={styles["section-one"]}>
             <div className={styles["sub-section"]}>
               <h6>99%</h6>
-              <p>Success in getting customer</p>
+              <p>Success in getting customer </p>
             </div>
             <div className={styles["sub-section"]}>
               <h6>25k</h6>
@@ -54,9 +37,9 @@ const AboutSection = () => {
           </div>
         </div>
       </div>
-      <div className={styles["about-us"]}>
+      <div className={styles["about-us"]} ref={ref}>
         <div className={styles["about"]}>
-          <div className={styles["about-img"]}>
+          <div className={inView ? styles["about-img"] : " "}>
             <Image
               src="/assets/about/about.jpg"
               alt="about us "
@@ -67,7 +50,10 @@ const AboutSection = () => {
           </div>
           <div className={styles["about-content"]}>
             <h6>About us</h6>
-            <h2>We’re On Mission To Help Business Grow Faster Thanever.</h2>
+            <h2>
+              We’re On Mission To Help Business Grow Faster Thanever.{" "}
+              <strong>{inView.toString()}</strong>
+            </h2>
             <p>
               Commodo elementum, sed imperdiet nunc euismod etiam aliquet
               viverra enim. Adipiscing nunc condimentum risus id. Aquam mattis

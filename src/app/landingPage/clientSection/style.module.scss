@@ -121,7 +121,7 @@
 }
 
 .client-title {
-  animation: fadeInDown 2s ease forwards;
+  animation: fadeInDown 4s ease forwards;
 }
 @keyframes fadeInDown {
   0% {
@@ -132,4 +132,12 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+
+.container{animation: fadeInUp 2s ease forwards;}
+
+@keyframes fadeInUp{
+  0%{transform:translate(0px, 100px); opacity: 0;}
+  100%{transform:translate(0px, 0); opacity: 1;}
 }

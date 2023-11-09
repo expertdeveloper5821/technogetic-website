@@ -94,3 +94,26 @@
     --container-widget-width: 50%;
     --container-widget-flex-grow: 0;
 }
+
+.input, .messages {
+    background-color: #ffffff;
+    border-style: solid;
+    border-width: 1px 1px 1px 1px;
+    border-color: var(--e-global-color-88f848e);
+    border-radius: 0px 0px 0px 0px;
+    padding: 14px 16px 14px 16px;
+    width: 60%;
+    border-color: #e2e5f2;
+  }
+
+  .messages{
+    width: 100%;
+  }
+  .textarea{
+    margin-bottom: 10px;
+  }
+  .form{
+    display: flex;
+    gap: 5px;
+    margin: 10px 0px;
+  }

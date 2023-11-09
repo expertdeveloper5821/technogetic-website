@@ -43,7 +43,6 @@
     font-size: 48px;
     font-family: $bs-work-sans-font-family;
     font-style: normal;
-    width: 30%;
     @media screen and (max-width: $breakpoint-xSmall) {
         width: 30%;
         font-size: 30px;
@@ -55,7 +54,6 @@
     font-family: $bs-work-sans-font-family;
     margin: 9px 11px;
     font-style: normal;
-    width: 60%;
     @media screen and (max-width: $breakpoint-xSmall) {
         margin: 0px 0px;
         width: 70%;
@@ -159,14 +157,15 @@
 }
 
 // .fadeInUp{}
-.about-img{animation: fadeInUp 1s ease forwards;}
+.about-img{animation: fadeInUp 3s ease forwards;}
+
 @keyframes fadeInUp{
   0%{transform:translate(0px, 100px); opacity: 0;}
   100%{transform:translate(0px, 0); opacity: 1;}
 }
 
 // .fadeInDown{}
-.about-content h2 { animation: fadeInDown 1s ease forwards;}
+.about-content h2 { animation: fadeInDown 3s ease forwards;}
 @keyframes fadeInDown {
     0% {
       opacity: 0;

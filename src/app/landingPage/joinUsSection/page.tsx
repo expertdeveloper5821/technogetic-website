@@ -31,21 +31,48 @@ const JoinUs = () => {
             </div>
           </div>
           <div className={styles["about-content"]}>
-            <div className={styles['demo']}>
-            <h6>Join Us</h6>
-            <h2>Several Things Define Us As a Company</h2>
-            <p>
+            <div className={styles["demo"]}>
+              <h6>Join Us</h6>
+              <h2>Several Things Define Us As a Company</h2>
+              {/* <p>
             Commodo elementum, sed imperdiet nunc euismod etiam aliquet viverra enim. Adipiscing nunc condimentum risus iquam.
-            </p>
-            <div className={styles["header-btn"]}>
+            </p> */}
+              {/* <div className={styles["header-btn"]}>
               <CommonButton
                 text="Join Us Now"
                 type="primary"
                 className={styles["custom-btn"]}
               />
+            </div> */}
+              <form className={styles["main-form"]}>
+                <div className={styles["form"]}>
+                  <input
+                    type="text"
+                    placeholder="Name"
+                    className={styles["input"]} required
+                  />
+                  <input
+                    type="email"
+                    placeholder="Email address"
+                    className={styles["input"]} required
+                  />
+                </div>
+                <div className={styles["textarea"]}>
+                  <textarea
+                    placeholder="Messages"
+                    className={styles["messages"]} required
+                  ></textarea>
+                </div>
+
+                <div className={styles["header-btn"]}>
+                  <CommonButton
+                    text="Send Message"
+                    type="primary"
+                    className={styles["custom-btn"]}
+                  />
+                </div>
+              </form>
             </div>
-            </div>
-            
           </div>
         </div>
       </div>

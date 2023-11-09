@@ -23,7 +23,14 @@
 .menu .menu-list {
   display: flex;
   list-style-type: none;
-  gap: 28px;
+  gap: 35px;
+  @media screen and (max-width: $breakpoint-tab) {
+    gap: 1px;
+  }
+  
+  @media screen and (max-width: $breakpoint-xSmall) {
+    gap: 1px;
+  }
 }
 
 .menu .menu-list li {
@@ -62,6 +69,13 @@
   font-family: sans-serif;
   margin: 0px 20px;
   font-size: 16px;
+  @media screen and (max-width: $breakpoint-tab) {
+    display: none;
+  }
+  
+  @media screen and (max-width: $breakpoint-xSmall) {
+   display: none;
+  }
 }
 @keyframes bounce {
   0%,
@@ -272,3 +286,18 @@
 }
 
 /* ... Your other styles ... */
+
+
+.toggle-menu{
+  margin: 12px 0px;
+}
+
+.logo{
+  @media screen and (max-width: $breakpoint-tab) {
+    padding: 15px 10px;
+  }
+  
+  @media screen and (max-width: $breakpoint-xSmall) {
+    padding: 15px 10px;
+  }
+}
