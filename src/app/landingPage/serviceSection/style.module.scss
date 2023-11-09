@@ -7,6 +7,9 @@
         background-position: top right;
     background-repeat: no-repeat;
     padding: 0px 0px 100px 0px;
+    @media screen and (max-width: $breakpoint-tab) {
+        padding: 50px 16px 40px 16px;
+             }
     @media screen and (max-width: $breakpoint-xSmall) {
         padding: 50px 16px 40px 16px;
     }
@@ -14,6 +17,9 @@
 }
 .main-head{
     width: 55%;
+    @media screen and (max-width: $breakpoint-tab) {
+        width: 100%; 
+             }
     @media screen and (max-width: $breakpoint-xSmall) {
         width: 100%; 
         
@@ -25,6 +31,9 @@
     margin-right: auto;
     margin-left: auto;
     position: relative;
+    @media screen and (max-width: $breakpoint-tab) {
+        display: inline-flex;
+             }
     @media screen and (max-width: $breakpoint-xSmall) {
         display: inline-flex;
      }
@@ -47,6 +56,9 @@
     line-height: 1.111em;
     margin-bottom: 16px;
     color: $white-color;
+    @media screen and (max-width: $breakpoint-tab) {
+        font-size: 25px;
+             }
     @media screen and (max-width: $breakpoint-xSmall) {
         font-size: 25px;
      }
@@ -79,7 +91,11 @@
 .box, .box-two{
     width: 50%;   
     padding: 64px 64px 64px 64px;
-    @media screen and (max-width: $breakpoint-xSmall) {
+    @media screen and (max-width: $breakpoint-tab) {
+        width: 100%; 
+        padding: 32px 32px 32px 32px;
+             }
+    @media screen and (max-width: $breakpoint-xSmall)  {
         width: 100%; 
         padding: 32px 32px 32px 32px;
      }
@@ -100,7 +116,10 @@
 
 .services-box{
     display: flex;
-    @media screen and (max-width: $breakpoint-xSmall) {
+    @media screen and (max-width: $breakpoint-tab) {
+        flex-direction: column;
+             }
+    @media screen and (max-width: $breakpoint-xSmall){
        flex-direction: column;
     }
 }

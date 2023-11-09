@@ -45,6 +45,10 @@
     font-size: 48px;
     font-family: $bs-work-sans-font-family;
     font-style: normal;
+    @media screen and (max-width: $breakpoint-tab) {
+      width: 30%;
+        font-size: 30px;
+      }
     @media screen and (max-width: $breakpoint-xSmall) {
         width: 30%;
         font-size: 30px;
@@ -85,7 +89,9 @@
     padding: 100px 0px 100px 0px;
     display: flex;
     justify-content: space-between;
-    
+    @media screen and (max-width: $breakpoint-tab) {
+      padding: 50px 16px 40px 16px;
+    }
     @media screen and (max-width: $breakpoint-xSmall) {
         padding: 50px 16px 40px 16px;
     }
@@ -130,6 +136,9 @@
     font-weight: bold;
     line-height: 1.111em;
     margin-bottom: 32px;
+    @media screen and (max-width: $breakpoint-tab) {
+      font-size: 32px;
+    }
     @media screen and (max-width: $breakpoint-xSmall) {
         font-size: 32px;
        }
@@ -144,6 +153,10 @@
     letter-spacing: 4px;
     text-transform: uppercase;
     color: $blue-color;
+    @media screen and (max-width: $breakpoint-tab) {
+      padding: 30px 0px 0px 0px;
+      margin-bottom: 10px;
+    }
     @media screen and (max-width: $breakpoint-xSmall) {
         padding: 30px 0px 0px 0px;
         margin-bottom: 10px;
