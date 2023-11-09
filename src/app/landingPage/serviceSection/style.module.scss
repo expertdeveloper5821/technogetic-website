@@ -39,7 +39,7 @@
     color: $blue-color;
 }
 
-.main-head h1, .box-title h3{
+.main-head .main-heading, .box-title h3{
     font-size: 60px;
     font-family: $bs-work-sans-font-family;
     font-style: normal;
@@ -116,8 +116,8 @@
 } 
 
 
-.box{animation: fadeInUp 1s ease forwards;}
-.box-two{animation: fadeInUp 2s ease forwards;}
+.box{animation: fadeInUp 5s ease forwards;}
+.box-two{animation: fadeInUp 7s ease forwards;}
 @keyframes fadeInUp{
   0%{transform:translate(0px, 100px); opacity: 0;}
   100%{transform:translate(0px, 0); opacity: 1;}
@@ -125,7 +125,7 @@
 
 
 
-.main-head h1 { animation: fadeInDown 2s ease forwards;}
+.main-head .main-heading { animation: fadeInDown 5s ease forwards;}
 @keyframes fadeInDown {
     0% {
       opacity: 0;

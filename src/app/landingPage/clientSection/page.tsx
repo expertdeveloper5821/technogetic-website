@@ -1,12 +1,22 @@
+"use client";
 import React from "react";
 import styles from "./style.module.scss";
 import Image from "next/image";
+import { useInView } from 'react-intersection-observer';
+
 
 const ClientSection = () => {
+
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+  });
+
+
   return (
-    <div className={styles["main-container"]}>
-      <div className={styles["container"]}>
-        <div className={styles["client-title"]}>
+    <div className={styles["main-container"]}  ref={ref}>
+      <div className={inView ? styles["container"]: ""}>
+        <div className={inView ? styles["client-title"]: ""}>
           <h5>Over 25k+ software businesses growing with Solvero</h5>
         </div>
         <div className={styles["client-logo"]}>

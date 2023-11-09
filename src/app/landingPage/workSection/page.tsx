@@ -1,11 +1,21 @@
+"use client";
 import React from "react";
 import styles from "./style.module.scss";
 import Image from "next/image";
 import CommonButton from "@/components/buttonComponent/page";
+import { useInView } from 'react-intersection-observer';
 
 const WorkSection = () => {
+
+  const { ref, inView, entry } = useInView({
+    /* Optional options */
+    threshold: 0,
+  });
+
+
+
   return (
-    <div className={styles["main-container"]}>
+    <div className={styles["main-container"]} ref={ref}>
       <div className={styles["container"]}>
         <div className={styles["main-head"]}>
           <h6>Works</h6>
@@ -28,7 +38,7 @@ const WorkSection = () => {
       </div>
       <div className={styles["services"]}>
         <div className={styles["services-box"]}>
-          <div className={styles["box1"]}>
+          <div className={inView ? styles["box1"]: ""}>
             <Image
               src="/assets/works/work2.jpg"
               alt="Mobile Development"
@@ -38,14 +48,15 @@ const WorkSection = () => {
               objectFit="contain"
             />
           </div>
-          <div className={styles["box-two"]}>
+          <div className={inView ? styles["box-two"]: ""}>
             <div className={styles["work-title"]}>
               <h6>DELIVERY SERVICE - ECOMMERCE</h6>
-              <h2>We have developed an Android app for fast grocery delivery</h2>  
-
+              <h2>
+                We have developed an Android app for fast grocery delivery
+              </h2>
             </div>
             <p>
-            Commodo elementum, sed imperdiet nunc euismod etiam aliquet
+              Commodo elementum, sed imperdiet nunc euismod etiam aliquet
               viverra enim. Adipiscing nunc condimentum risus id. Aquam mattis
               magna facilisi
             </p>
@@ -61,14 +72,15 @@ const WorkSection = () => {
       </div>
       <div className={styles["services"]}>
         <div className={styles["services-box"]}>
-        <div className={styles["box-two"]}>
+          <div className={inView ? styles["box-two"]: ""}>
             <div className={styles["work-title"]}>
               <h6>AI - DEVELOPMENT</h6>
-              <h2>We have developed an audio platform with smart advertising</h2>  
-
+              <h2>
+                We have developed an audio platform with smart advertising
+              </h2>
             </div>
             <p>
-            Commodo elementum, sed imperdiet nunc euismod etiam aliquet
+              Commodo elementum, sed imperdiet nunc euismod etiam aliquet
               viverra enim. Adipiscing nunc condimentum risus id. Aquam mattis
               magna facilisi
             </p>
@@ -80,7 +92,7 @@ const WorkSection = () => {
               />
             </div>
           </div>
-          <div className={styles["box1"]}>
+          <div className={inView ? styles["box1"]: ""}>
             <Image
               src="/assets/works/work1.jpg"
               alt="Mobile Development"
@@ -94,7 +106,7 @@ const WorkSection = () => {
       </div>
       <div className={styles["services"]}>
         <div className={styles["services-box"]}>
-          <div className={styles["box1"]}>
+          <div className={inView ? styles["box1"]: ""}>
             <Image
               src="/assets/works/work3.jpg"
               alt="Mobile Development"
@@ -104,14 +116,15 @@ const WorkSection = () => {
               objectFit="contain"
             />
           </div>
-          <div className={styles["box-two"]}>
+          <div className={inView ? styles["box-two"]: ""}>
             <div className={styles["work-title"]}>
               <h6>DELIVERY SERVICE - ECOMMERCE</h6>
-              <h2>We have developed an Android app for fast grocery delivery</h2>  
-
+              <h2>
+                We have developed an Android app for fast grocery delivery
+              </h2>
             </div>
             <p>
-            Commodo elementum, sed imperdiet nunc euismod etiam aliquet
+              Commodo elementum, sed imperdiet nunc euismod etiam aliquet
               viverra enim. Adipiscing nunc condimentum risus id. Aquam mattis
               magna facilisi
             </p>
