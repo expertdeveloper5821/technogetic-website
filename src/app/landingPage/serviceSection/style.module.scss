@@ -1,5 +1,5 @@
 @import '../../../styles/globals.scss';
-@import '../../../styles/variables';
+@import '../../../styles/_variables';
 
 .main-container {
         background-color: $bg-color;
@@ -7,9 +7,17 @@
         background-position: top right;
     background-repeat: no-repeat;
     padding: 0px 0px 100px 0px;
+    @media screen and (max-width: $breakpoint-xSmall) {
+        padding: 50px 16px 40px 16px;
+    }
+    
 }
 .main-head{
     width: 55%;
+    @media screen and (max-width: $breakpoint-xSmall) {
+        width: 100%; 
+        
+     }
 }
 .container , .services{
     max-width: 1170px;
@@ -17,6 +25,9 @@
     margin-right: auto;
     margin-left: auto;
     position: relative;
+    @media screen and (max-width: $breakpoint-xSmall) {
+        display: inline-flex;
+     }
 }
 .main-head h6{
     margin-bottom: 16px;
@@ -36,6 +47,9 @@
     line-height: 1.111em;
     margin-bottom: 16px;
     color: $white-color;
+    @media screen and (max-width: $breakpoint-xSmall) {
+        font-size: 25px;
+     }
 }
 
 .main-head p{
@@ -59,10 +73,16 @@
 .box {
     background-color: #333787;
     transition: 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+
+
 }
 .box, .box-two{
     width: 50%;   
     padding: 64px 64px 64px 64px;
+    @media screen and (max-width: $breakpoint-xSmall) {
+        width: 100%; 
+        padding: 32px 32px 32px 32px;
+     }
 }
 
 .custom-btn {
@@ -80,6 +100,9 @@
 
 .services-box{
     display: flex;
+    @media screen and (max-width: $breakpoint-xSmall) {
+       flex-direction: column;
+    }
 }
 
 .box-two{
@@ -91,3 +114,25 @@
     margin-bottom: 32px;
     line-height: 1.5em;
 } 
+
+
+.box{animation: fadeInUp 1s ease forwards;}
+.box-two{animation: fadeInUp 2s ease forwards;}
+@keyframes fadeInUp{
+  0%{transform:translate(0px, 100px); opacity: 0;}
+  100%{transform:translate(0px, 0); opacity: 1;}
+}
+
+
+
+.main-head h1 { animation: fadeInDown 2s ease forwards;}
+@keyframes fadeInDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-100%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }

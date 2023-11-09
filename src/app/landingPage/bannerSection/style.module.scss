@@ -1,5 +1,5 @@
 @import '../../../styles/globals.scss';
-@import '../../../styles/variables';
+@import '../../../styles/_variables';
 
 
 .banner-section {
@@ -28,6 +28,16 @@
     width: 60%;
     font-size: 72px;
     margin-bottom: 32px;
+
+    @media screen and (max-width: $breakpoint-tab) {
+      width: 49%;
+      font-size: 38px;
+    }
+
+    @media screen and (max-width: $breakpoint-xSmall) {
+      width: 25%;
+      font-size: 40px;
+    }
 }
 
 .banner-para{
@@ -39,6 +49,20 @@
     margin-bottom: 32px;
     font-size: 20px;
     width: 60%;
+
+    
+
+    @media screen and (max-width: $breakpoint-tab) {
+      font-size: 17px;
+      width: 44%;
+      line-height: 1.5rem;
+    }
+
+    @media screen and (max-width: $breakpoint-xSmall) {
+      font-size: 17px;
+      width: 24%;
+      line-height: 1.5rem; 
+    }
 }
 
 .custom-btn {
@@ -54,9 +78,15 @@
     font-family: $bs-work-sans-font-family;
     font-style: normal;
 }
-.banner-subsection{
-    background-color: rgb(0 0 0 / 57%);;
-    padding: 225px 0px 150px 0px;
+.banner-subsection {
+  background-color: rgb(0 0 0 / 57%);
+  padding: 225px 0px 150px 0px;
+  @media screen and (max-width: $breakpoint-xSmall) {
+    padding: 160px 16px 80px 16px; /* Adjust the padding as needed for smaller screens */
+  }
+  @media screen and (max-width: $breakpoint-tab) {
+    padding: 160px 16px 80px 16px; /* Adjust the padding as needed for smaller screens */
+  }
 }
 
 
@@ -93,16 +123,16 @@
   }
 
 
-  @keyframes fadeInUp {
-    from {
-        transform: translate3d(0,40px,0)
-    }
+//   @keyframes fadeInUp {
+//     from {
+//         transform: translate3d(0,40px,0)
+//     }
 
-    to {
-        transform: translate3d(0,0,0);
-        opacity: 1
-    }
-}
+//     to {
+//         transform: translate3d(0,0,0);
+//         opacity: 1
+//     }
+// }
 
 @-webkit-keyframes head-title {
     from {
@@ -126,4 +156,12 @@
     opacity: 0;
     animation-name: fadeInUp;
     -webkit-animation-name: fadeInUp;
+}
+
+
+.head-title{animation: fadeInUp 1s ease forwards;}
+// .fadeInUp{}
+@keyframes fadeInUp{
+  0%{transform:translate(0px, 100px); opacity: 0;}
+  100%{transform:translate(0px, 0); opacity: 1;}
 }

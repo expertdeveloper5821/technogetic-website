@@ -25,6 +25,7 @@ const LandingPage = () => {
       <Testimonial />
       <JoinUs />
       <Blog />
+      <Footer />
     </div>
   );
 };
