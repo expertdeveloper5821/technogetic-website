@@ -95,6 +95,10 @@ const Footer = () => {
             </div>
           </div>
         </div>
+        <div className={styles["copyright"]}>
+          <p>Copyright © Technogetic All Right Reserved.</p>
+          
+        </div>
       </div>
     </div>
   );

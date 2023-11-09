@@ -6,8 +6,7 @@
     padding: 32px 0px 32px 0px;
     color: #fff;
     @media screen and (max-width: $breakpoint-tab) {
-        // width: 49%;
-        // font-size: 38px;
+      padding: 32px 20px 32px 20px;
       }
   
       @media screen and (max-width: $breakpoint-xSmall) {
@@ -21,6 +20,9 @@
     margin-left: auto;
     position: relative;
     gap: 20px;
+    @media screen and (max-width: $breakpoint-tab) {
+      display: inline-flex;
+    }
     @media screen and (max-width: $breakpoint-xSmall) {
         display: inline-flex;
       }
@@ -30,8 +32,8 @@
     display: flex;
 
     @media screen and (max-width: $breakpoint-tab) {
-        // width: 49%;
-        // font-size: 38px;
+      flex-direction: column;
+      margin: 10px 0px;
       }
   
       @media screen and (max-width: $breakpoint-xSmall) {
@@ -54,6 +56,10 @@
     font-family: $bs-work-sans-font-family;
     margin: 9px 11px;
     font-style: normal;
+    @media screen and (max-width: $breakpoint-tab) {
+      margin: 0px 0px;
+      width: 70%;
+      }
     @media screen and (max-width: $breakpoint-xSmall) {
         margin: 0px 0px;
         width: 70%;
@@ -63,6 +69,9 @@
 
 .section-one , .section-two{
     display: flex;
+    @media screen and (max-width: $breakpoint-tab) {
+      flex-direction: column;
+      }
     @media screen and (max-width: $breakpoint-xSmall) {
        flex-direction: column;
       }
@@ -76,6 +85,7 @@
     padding: 100px 0px 100px 0px;
     display: flex;
     justify-content: space-between;
+    
     @media screen and (max-width: $breakpoint-xSmall) {
         padding: 50px 16px 40px 16px;
     }
@@ -91,6 +101,9 @@
     position: relative;
     color: $white-color;
     display: flex;
+    @media screen and (max-width: $breakpoint-tab) {
+      flex-direction: column;
+    }
     @media screen and (max-width: $breakpoint-xSmall) {
        flex-direction: column;
        }
@@ -99,8 +112,13 @@
 .about-img, .about-content{
     width: 50%;
     padding: 0px 20px;
+    @media screen and (max-width: $breakpoint-tab) {
+      width: 100%;
+      padding: 0px 0px;
+    }
     @media screen and (max-width: $breakpoint-xSmall) {
         width: 100%;
+        padding: 0px 0px;
        }
 
 }

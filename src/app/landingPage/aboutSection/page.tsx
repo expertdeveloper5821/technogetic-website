@@ -51,8 +51,7 @@ const AboutSection = () => {
           <div className={styles["about-content"]}>
             <h6>About us</h6>
             <h2>
-              We’re On Mission To Help Business Grow Faster Thanever.{" "}
-              <strong>{inView.toString()}</strong>
+              We’re On Mission To Help Business Grow Faster Thanever.
             </h2>
             <p>
               Commodo elementum, sed imperdiet nunc euismod etiam aliquet
