@@ -1,11 +1,27 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import styles from "./styles.module.scss";
 import Image from "next/image";
 import CommonButton from "@/components/buttonComponent/page";
 import { useInView } from "react-intersection-observer";
+import ReadMoreButton from "@/components/commonComponents/readMore/page";
+interface AboutSectionProps {
+  text: string;
+  maxLength: number;
+}
 
-const AboutSection = () => {
+const AboutSection = ({ text, maxLength } : any ) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const paragraphText = `
+  Commodo elementum, sed imperdiet nunc euismod etiam aliquet
+  viverra enim. Adipiscing nunc condimentum risus id. Aquam mattis
+  magna facilisi fermentum, euismod vitae. Porttitor sit tincidunt
+  dictum facilisi eget orci velit. Nulla laoreet nunc gravida augue
+  aenean sed elementum, in.
+`;
+  const displayText = typeof text === 'string' ? (isExpanded ? text : `${text.slice(0, maxLength)}...`) : '';
+
   const { ref, inView, entry } = useInView({
     /* Optional options */
     threshold: 0,
@@ -53,19 +69,10 @@ const AboutSection = () => {
             <h2>
               We’re On Mission To Help Business Grow Faster Thanever.
             </h2>
-            <p>
-              Commodo elementum, sed imperdiet nunc euismod etiam aliquet
-              viverra enim. Adipiscing nunc condimentum risus id. Aquam mattis
-              magna facilisi fermentum, euismod vitae. Porttitor sit tincidunt
-              dictum facilisi eget orci velit. Nulla laoreet nunc gravida augue
-              aenean sed elementum, in.
-            </p>
+            <p>{displayText}</p>
             <div className={styles["header-btn"]}>
-              <CommonButton
-                text="Learn More"
-                type="primary"
-                className={styles["custom-btn"]}
-              />
+             
+              <ReadMoreButton  text={paragraphText} maxLength={100}/>
             </div>
           </div>
         </div>

@@ -171,9 +171,9 @@
   opacity: 0.9;
   padding: 100px 0px 100px 0px;
   
-  @media screen and (max-width: $breakpoint-tab) {
-    padding: 20px 0px 100px 0px;
-  }
+  // @media screen and (max-width: $breakpoint-tab) {
+  //   padding: 20px 0px 100px 0px;
+  // }
 
   @media screen and (max-width: $breakpoint-xSmall) {
     padding: 20px 0px 100px 0px;
