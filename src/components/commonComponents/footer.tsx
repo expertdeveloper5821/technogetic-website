@@ -43,9 +43,11 @@ const Footer = () => {
             <div className={styles["footer-img"]}>
               <Image
                 src="/assets/logo/logo.png"
-                width={150}
-                height={80}
                 alt="technogetic"
+                width={180}
+                height={75}
+                // layout="responsive"
+               
               />
             </div>
             <p>

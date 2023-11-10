@@ -1,17 +1,28 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import styles from "./style.module.scss";
 import Image from "next/image";
 import CommonButton from "@/components/buttonComponent/page";
 import { useInView } from 'react-intersection-observer';
+import ReadMoreButton from "@/components/commonComponents/readMore/page";
 
-
-const ServiceSection = () => {
+const ServiceSection = ({ text, maxLength } : any) => {
 
   const { ref, inView, entry } = useInView({
     /* Optional options */
     threshold: 0,
   });
+
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const paragraphText = `
+  Commodo elementum, sed imperdiet nunc euismod etiam aliquet
+  viverra enim. Adipiscing nunc condimentum risus id. Aquam mattis
+  magna facilisi fermentum, euismod vitae. Porttitor sit tincidunt
+  dictum facilisi eget orci velit. Nulla laoreet nunc gravida augue
+  aenean sed elementum, in.
+`;
+  const displayText = typeof text === 'string' ? (isExpanded ? text : `${text.slice(0, maxLength)}...`) : '';
 
 
   return (
@@ -41,13 +52,9 @@ const ServiceSection = () => {
                 />
               </div>
             </div>
-            <p>Commodo elementum, sed imperdiet nunc euismod etiam aliquet viverra enim. Adipiscing nunc condimentum risus id. Aquam mattis magna facilisi</p>
+            <p>{displayText}</p>
             <div className={styles["header-btn"]}>
-              <CommonButton
-                text="Discover More"
-                type="primary"
-                className={styles["custom-btn"]}
-              />
+            <ReadMoreButton  text={paragraphText} maxLength={100}/>
             </div>
           </div>
           <div className={inView ? styles["box-two"] : " "}>
@@ -62,13 +69,9 @@ const ServiceSection = () => {
                 />
               </div>
             </div>
-            <p>Commodo elementum, sed imperdiet nunc euismod etiam aliquet viverra enim. Adipiscing nunc condimentum risus id. Aquam mattis magna facilisi</p>
+            <p>{displayText}</p>
             <div className={styles["header-btn"]}>
-              <CommonButton
-                text="Discover More"
-                type="primary"
-                className={styles["custom-btn"]}
-              />
+            <ReadMoreButton  text={paragraphText} maxLength={100}/>
             </div>
           </div>
           
@@ -89,13 +92,9 @@ const ServiceSection = () => {
                 />
               </div>
             </div>
-            <p>Commodo elementum, sed imperdiet nunc euismod etiam aliquet viverra enim. Adipiscing nunc condimentum risus id. Aquam mattis magna facilisi</p>
+            <p>{displayText}</p>
             <div className={styles["header-btn"]}>
-              <CommonButton
-                text="Discover More"
-                type="primary"
-                className={styles["custom-btn"]}
-              />
+            <ReadMoreButton  text={paragraphText} maxLength={100}/>
             </div>
           </div>
           <div className={inView ? styles["box"]  : " "}>
@@ -110,13 +109,9 @@ const ServiceSection = () => {
                 />
               </div>
             </div>
-            <p>Commodo elementum, sed imperdiet nunc euismod etiam aliquet viverra enim. Adipiscing nunc condimentum risus id. Aquam mattis magna facilisi</p>
+            <p>{displayText}</p>
             <div className={styles["header-btn"]}>
-              <CommonButton
-                text="Discover More"
-                type="primary"
-                className={styles["custom-btn"]}
-              />
+            <ReadMoreButton  text={paragraphText} maxLength={100}/>
             </div>
           </div>
           
@@ -137,13 +132,9 @@ const ServiceSection = () => {
                 />
               </div>
             </div>
-            <p>Commodo elementum, sed imperdiet nunc euismod etiam aliquet viverra enim. Adipiscing nunc condimentum risus id. Aquam mattis magna facilisi</p>
+            <p>{displayText}</p>
             <div className={styles["header-btn"]}>
-              <CommonButton
-                text="Discover More"
-                type="primary"
-                className={styles["custom-btn"]}
-              />
+            <ReadMoreButton  text={paragraphText} maxLength={100}/>
             </div>
           </div>
           <div className={inView ? styles["box-two"]: " "}>
@@ -158,13 +149,9 @@ const ServiceSection = () => {
                 />
               </div>
             </div>
-            <p>Commodo elementum, sed imperdiet nunc euismod etiam aliquet viverra enim. Adipiscing nunc condimentum risus id. Aquam mattis magna facilisi</p>
+            <p>{displayText}</p>
             <div className={styles["header-btn"]}>
-              <CommonButton
-                text="Discover More"
-                type="primary"
-                className={styles["custom-btn"]}
-              />
+            <ReadMoreButton  text={paragraphText} maxLength={100}/>
             </div>
           </div>
           
