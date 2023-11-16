@@ -45,6 +45,7 @@
     font-size: 48px;
     font-family: $bs-work-sans-font-family;
     font-style: normal;
+    display: flex;
     @media screen and (max-width: $breakpoint-tab) {
       width: 30%;
         font-size: 30px;

@@ -5,6 +5,7 @@ import Image from "next/image";
 import CommonButton from "@/components/buttonComponent/page";
 import { useInView } from "react-intersection-observer";
 import ReadMoreButton from "@/components/commonComponents/readMore/page";
+import AutoNumberCounter from "@/components/commonComponents/autoNumberCounter";
 interface AboutSectionProps {
   text: string;
   maxLength: number;
@@ -33,22 +34,22 @@ const AboutSection = ({ text, maxLength } : any ) => {
         <div className={styles["container"]}>
           <div className={styles["section-one"]}>
             <div className={styles["sub-section"]}>
-              <h6>99%</h6>
+              <h6><AutoNumberCounter max={100} speed={5} stopValues={[99, 100]}   />%</h6>
               <p>Success in getting customer </p>
             </div>
             <div className={styles["sub-section"]}>
-              <h6>25k</h6>
+              <h6><AutoNumberCounter max={25} speed={5} stopValues={[25, 26]}   />k</h6>
               <p>Thousands of successful business</p>
             </div>
           </div>
           <div className={styles["section-two"]}>
             <div className={styles["sub-section"]}>
-              <h6>120+</h6>
+              <h6><AutoNumberCounter max={120} speed={5} stopValues={[120, 121]}   />+</h6>
               <p>Total client who love Solvero</p>
             </div>
             <div className={styles["sub-section"]}>
-              <h6>4.9</h6>
-              <p>3.5 Reviews are very satisfied with us</p>
+              <h6><AutoNumberCounter max={5} speed={5} stopValues={[5,6]}   /></h6>
+              <p>Reviews are very satisfied with us</p>
             </div>
           </div>
         </div>

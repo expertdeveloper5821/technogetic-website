@@ -1,49 +1,85 @@
-'use client';
-import React, { useState } from 'react';
-import styles from './style.module.scss'; // Correct import path
-import Image from 'next/image';
-import Link from 'next/link';
-import CommonButton from '../buttonComponent/page';
+"use client";
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import styles from "./style.module.scss"; // Correct import path
 
-const Header = () => {
+const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSticky, setIsSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100) {
+        setIsSticky(true);
+      } else {
+        setIsSticky(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   return (
-    <div className={styles['nav-bar']}>
-      <div className={styles['header']}>
-      <div className={styles['toggle-menu']}>
-        <button onClick={toggleMenu} className={styles['menu-button']}>
-           <Image src="/assets/menu.png" width={50} height={50} alt="about us" layout="responsive" />
-          </button>
-        </div>
-        <div className={styles['logo']}>
-          <Image alt="logo" src="/assets/logo/logo.png" width={100} height={50} />
-          
-        </div>
-        <div className={styles['menu']}>
-         
-          <ul className={`${styles['menu-list']} ${isMenuOpen ? styles['open'] : ''}`}>
-            <li>Home</li>
-            <li>About Us</li>
-            <li>Services</li>
-            <li>Portfolios</li>
-            <li>Careers</li>
-            <li>Contact</li>
-          </ul>
-        </div>
-        <div className={styles['header-btn']}>
-          <CommonButton text="Primary Button" type="primary" className={styles['custom-btn']} />
-          
-        </div>
-        
-       
+    <nav
+      className={`${styles.navbar} ${isSticky ? styles.sticky : ""} ${
+        isMenuOpen ? styles.open : ""
+      }`}
+    >
+      <div className={styles.logo}>
+        <Link href="/">
+          <div className={styles["logo"]}>
+            <Image
+              alt="logo"
+              src="/assets/logo/logo.png"
+              width={100}
+              height={50}
+            />
+          </div>
+        </Link>
       </div>
-     
-    </div>
+      <div
+        className={styles.menuToggle}
+        onClick={toggleMenu}
+      >
+        <Image
+          src="/assets/menu.png"
+          width={30}
+          height={30}
+          alt="about us"
+          sizes='100vw'
+        />
+      </div>
+
+      <ul className={styles.navLinks}>
+        <li>
+          <Link href="/">Home</Link>
+        </li>
+        <li>
+          <Link href="#">About</Link>
+        </li>
+        <li>
+          <Link href="#">Services</Link>
+        </li>
+        <li>
+          <Link href="#">Portfolios</Link>
+        </li>
+        <li>
+          <Link href="#">Careers</Link>
+        </li>
+        <li>
+          <Link href="#">Contact</Link>
+        </li>
+      </ul>
+    </nav>
   );
 };
 
