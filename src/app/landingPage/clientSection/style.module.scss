@@ -7,6 +7,14 @@
   background-position: top left;
   background-repeat: no-repeat;
   padding: 0px 0px 100px 0px;
+  @media screen and (max-width: $breakpoint-tab) {
+   
+     padding: 0px 0px 0px 0px;
+         }
+@media screen and (max-width: $breakpoint-xSmall)  {
+   
+     padding: 0px 0px 0px 0px;
+ }
 }
 
 .container {
