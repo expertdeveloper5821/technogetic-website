@@ -9,6 +9,10 @@ export interface EnvironmentConfig {
   EMAIL_PORT: number;
   EMAIL_FROM: string;
   SECRET_KEY: string;
+  CLOUD_NAME: string;
+  API_KEY: string;
+  API_SECRET: string;
+
 }
 
 export const environmentConfig: EnvironmentConfig = {
@@ -18,5 +22,8 @@ export const environmentConfig: EnvironmentConfig = {
   EMAIL_PASSWORD: process.env.emailPassword || 'emailPassword',
   EMAIL_PORT: process.env.emailPort ? parseInt(process.env.emailPort, 10) : 587,
   EMAIL_FROM: process.env.emailFrom || 'noreply@example.com',
-  SECRET_KEY : process.env.APP_SECRET || 'example'
+  SECRET_KEY: process.env.APP_SECRET || 'example',
+  CLOUD_NAME: process.env.cloudName || 'cloudName',
+  API_KEY: process.env.apiKey || 'Apikey',
+  API_SECRET: process.env.apiSecret || 'ApiSecret',
 };
