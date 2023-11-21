@@ -15,11 +15,11 @@
   position: relative;
   color: $white-color;
   display: flex;
-  @media screen and (max-width: $breakpoint-tab) {
+  @media screen and (max-width: $breakpoint-md) {
     flex-direction: column;
   }
 
-  @media screen and (max-width: $breakpoint-xSmall) {
+  @media screen and (max-width: $breakpoint-xs) {
     flex-direction: column;
   }
 }
@@ -29,22 +29,22 @@
 
 .about-content {
   width: 50%;
-  @media screen and (max-width: $breakpoint-tab) {
+  @media screen and (max-width: $breakpoint-md) {
     width: 100%;
   }
 
-  @media screen and (max-width: $breakpoint-xSmall) {
+  @media screen and (max-width: $breakpoint-xs) {
     width: 100%;
   }
 }
 
 .demo {
   padding: 100px 135px 0px 64px;
-  @media screen and (max-width: $breakpoint-tab) {
+  @media screen and (max-width: $breakpoint-md) {
     padding: 20px 16px 0px 16px;
   }
 
-  @media screen and (max-width: $breakpoint-xSmall) {
+  @media screen and (max-width: $breakpoint-xs) {
     padding: 20px 16px 0px 16px;
   }
 }
@@ -56,11 +56,11 @@
   font-weight: bold;
   line-height: 1.111em;
   margin-bottom: 32px;
-  @media screen and (max-width: $breakpoint-tab) {
+  @media screen and (max-width: $breakpoint-md) {
     font-size: 25px;
   }
 
-  @media screen and (max-width: $breakpoint-xSmall) {
+  @media screen and (max-width: $breakpoint-xs) {
     font-size: 25px;
   }
 }
@@ -106,11 +106,11 @@
   max-width: 50%;
   --container-widget-width: 50%;
   --container-widget-flex-grow: 0;
-  @media screen and (max-width: $breakpoint-tab) {
+  @media screen and (max-width: $breakpoint-md) {
     max-width: 48%;
   }
 
-  @media screen and (max-width: $breakpoint-xSmall) {
+  @media screen and (max-width: $breakpoint-xs) {
     max-width: 48%;
   }
 }
@@ -123,11 +123,11 @@
   max-width: 50%;
   --container-widget-width: 50%;
   --container-widget-flex-grow: 0;
-  @media screen and (max-width: $breakpoint-tab) {
+  @media screen and (max-width: $breakpoint-md) {
     max-width: 48%;
   }
 
-  @media screen and (max-width: $breakpoint-xSmall) {
+  @media screen and (max-width: $breakpoint-xs) {
     max-width: 48%;
   }
 }
@@ -154,4 +154,5 @@
   display: flex;
   gap: 5px;
   margin: 10px 0px;
+  
 }

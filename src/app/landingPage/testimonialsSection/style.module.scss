@@ -9,11 +9,11 @@
 }
 .main-head {
   width: 55%;
-  @media screen and (max-width: $breakpoint-tab) {
+  @media screen and (max-width: $breakpoint-md) {
     width: 100%;
     padding: 32px 16px 22px 16px;
   }
-  @media screen and (max-width: $breakpoint-xSmall) {
+  @media screen and (max-width: $breakpoint-xs) {
     width: 100%;
     padding: 32px 16px 22px 16px;
   }
@@ -25,10 +25,10 @@
   margin-right: auto;
   margin-left: auto;
   position: relative;
-  @media screen and (max-width: $breakpoint-tab) {
+  @media screen and (max-width: $breakpoint-md) {
     flex-direction: column;
   }
-  @media screen and (max-width: $breakpoint-xSmall) {
+  @media screen and (max-width: $breakpoint-xs) {
     flex-direction: column;
   }
 }
@@ -47,10 +47,10 @@
 .main-head h1,
 .box-title h3 {
   font-size: 60px;
-  @media screen and (max-width: $breakpoint-tab) {
+  @media screen and (max-width: $breakpoint-md) {
     font-size: 35px;
   }
-  @media screen and (max-width: $breakpoint-xSmall) {
+  @media screen and (max-width: $breakpoint-xs) {
     font-size: 35px;
   }
 }
@@ -124,11 +124,11 @@
   padding: 32px 0px 0px 0px;
   width: 50%;
   margin: 10px 10px;
-  @media screen and (max-width: $breakpoint-tab) {
+  @media screen and (max-width: $breakpoint-md) {
     width: 94%;
     margin: 10px 10px;
   }
-  @media screen and (max-width: $breakpoint-xSmall) {
+  @media screen and (max-width: $breakpoint-xs) {
     width: 94%;
     margin: 10px 10px;
   }
@@ -171,11 +171,11 @@
   opacity: 0.9;
   padding: 100px 0px 100px 0px;
   
-  // @media screen and (max-width: $breakpoint-tab) {
+  // @media screen and (max-width: $breakpoint-md) {
   //   padding: 20px 0px 100px 0px;
   // }
 
-  @media screen and (max-width: $breakpoint-xSmall) {
+  @media screen and (max-width: $breakpoint-xs) {
     padding: 0px 0px 0px 0px;
   }
 }

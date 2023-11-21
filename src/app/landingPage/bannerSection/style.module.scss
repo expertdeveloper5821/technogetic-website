@@ -36,7 +36,7 @@
     font-size: 65px;
   }
 
-  @media screen and (max-width: $breakpoint-tab) {
+  @media screen and (max-width: $breakpoint-md) {
     width: 49%;
     font-size: 50px;
   }
@@ -46,7 +46,7 @@
     font-size: 40px;
   }
 
-  @media screen and (max-width: $breakpoint-xSmall) {
+  @media screen and (max-width: $breakpoint-xs) {
     width: 32%;
     font-size: 40px;
   }
@@ -66,13 +66,13 @@
     // width: 40%;
     line-height: 1.5rem;
   }
-  @media screen and (max-width: $breakpoint-tab) {
+  @media screen and (max-width: $breakpoint-md) {
     font-size: 17px;
     width: 35%;
     line-height: 1.5rem;
   }
 
-  @media screen and (max-width: $breakpoint-xSmall) {
+  @media screen and (max-width: $breakpoint-xs) {
     font-size: 17px;
     width: 30%;
     line-height: 1.5rem;
@@ -99,16 +99,13 @@
 
   @media screen and (max-width: $breakpoint-lg) {
     padding: 160px 16px 80px 16px;
-  }
-  @media screen and (max-width: $breakpoint-ms) {
-    padding: 160px 16px 80px 16px;
-  }
+  } 
 
-  @media screen and (max-width: $breakpoint-tab) {
+  @media screen and (max-width: $breakpoint-md) {
     padding: 160px 16px 80px 16px; /* Adjust the padding as needed for smaller screens */
   }
 
-  @media screen and (max-width: $breakpoint-xSmall) {
+  @media screen and (max-width: $breakpoint-xs) {
     padding: 160px 16px 80px 16px; /* Adjust the padding as needed for smaller screens */
   }
 }

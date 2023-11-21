@@ -14,7 +14,7 @@ const ClientSection = () => {
 
 
   return (
-    <div className={styles["main-container"]}  ref={ref}>
+    <div className={styles["main-container"]}  ref={ref} id="client">
       <div className={inView ? styles["container"]: ""}>
         <div className={inView ? styles["client-title"]: ""}>
           <h5>Over 25k+ software businesses growing with Solvero</h5>

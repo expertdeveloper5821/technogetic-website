@@ -5,7 +5,7 @@ import CommonButton from "@/components/buttonComponent/page";
 
 const JoinUs = () => {
   return (
-    <div>
+    <div id="contact">
       <div className={styles["about-us"]}>
         <div className={styles["about"]}>
           <div className={styles["about-img"]}>

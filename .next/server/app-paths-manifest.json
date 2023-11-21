@@ -1,9 +1,6 @@
 {
   "/_not-found": "app/_not-found.js",
-  "/dashboard/contact/page": "app/dashboard/contact/page.js",
-  "/dashboard/page": "app/dashboard/page.js",
-  "/dashboard/section/page": "app/dashboard/section/page.js",
-  "/dashboard/subSection/page": "app/dashboard/subSection/page.js",
+  "/favicon.ico/route": "app/favicon.ico/route.js",
   "/landingPage/aboutSection/page": "app/landingPage/aboutSection/page.js",
   "/landingPage/bannerSection/page": "app/landingPage/bannerSection/page.js",
   "/landingPage/blogSection/page": "app/landingPage/blogSection/page.js",
@@ -14,5 +11,8 @@
   "/landingPage/testimonialsSection/page": "app/landingPage/testimonialsSection/page.js",
   "/landingPage/workSection/page": "app/landingPage/workSection/page.js",
   "/page": "app/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js"
+  "/dashboard/contact/page": "app/dashboard/contact/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/dashboard/section/page": "app/dashboard/section/page.js",
+  "/dashboard/subSection/page": "app/dashboard/subSection/page.js"
 }

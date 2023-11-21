@@ -26,10 +26,10 @@ const WorkSection = ({ text, maxLength } : any ) => {
 
 
   return (
-    <div className={styles["main-container"]} ref={ref}>
+    <div  className={styles["main-container"]} ref={ref}>
       <div className={styles["container"]}>
         <div className={styles["main-head"]}>
-          <h6>Works</h6>
+          <h6 id="portfolios">Works</h6>
           <h1>Our Works</h1>
           <p>
             Commodo elementum, sed imperdiet nunc euismod etiam aliquet viverra

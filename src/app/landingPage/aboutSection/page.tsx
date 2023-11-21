@@ -29,11 +29,11 @@ const AboutSection = ({ text, maxLength } : any ) => {
   });
 
   return (
-    <div>
+    <div >
       <div className={styles["main-container"]}>
         <div className={styles["container"]}>
           <div className={styles["section-one"]}>
-            <div className={styles["sub-section"]}>
+            <div className={styles["sub-section"]} id="about">
               <h6><AutoNumberCounter max={100} speed={5} stopValues={[99, 100]}   />%</h6>
               <p>Success in getting customer </p>
             </div>
