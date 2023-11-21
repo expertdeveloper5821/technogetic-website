@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from "react";
 import styles from "./style.module.scss";
 import Image from "next/image";
-import CommonButton from "@/components/buttonComponent/page";
 import { getBlogPosts } from "@/api/api-data";
 
 interface BlogPost {
@@ -56,7 +55,7 @@ const Blog: React.FC = () => {
   };
 
   return (
-    <div className={styles["main-container"]}>
+    <div className={styles["main-container"]} id="blog">
       <div className={styles["testimonial-section"]}>
         <div className={styles["container"]}>
           <div className={styles["main-head"]}>

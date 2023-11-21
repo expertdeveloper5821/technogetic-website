@@ -28,6 +28,13 @@ const Header: React.FC = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const scrollToSection = (sectionId: string) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView();
+    }
+  };
+
   return (
     <nav
       className={`${styles.navbar} ${isSticky ? styles.sticky : ""} ${
@@ -46,37 +53,46 @@ const Header: React.FC = () => {
           </div>
         </Link>
       </div>
-      <div
-        className={styles.menuToggle}
-        onClick={toggleMenu}
-      >
+      <div className={styles.menuToggle} onClick={toggleMenu}>
         <Image
           src="/assets/menu.png"
           width={30}
           height={30}
           alt="about us"
-          sizes='100vw'
+          sizes="100vw"
         />
       </div>
 
       <ul className={styles.navLinks}>
         <li>
-          <Link href="/">Home</Link>
+          <Link href="/" onClick={() => scrollToSection("home")}>
+            Home
+          </Link>
         </li>
         <li>
-          <Link href="#">About</Link>
+          <Link href="/#about" onClick={() => scrollToSection("about")}>
+            About
+          </Link>
         </li>
         <li>
-          <Link href="#">Services</Link>
+          <Link href="/#services" onClick={() => scrollToSection("services")}>
+            Services
+          </Link>
         </li>
         <li>
-          <Link href="#">Portfolios</Link>
+          <Link href="/#portfolios" onClick={() => scrollToSection("portfolios")}>
+            Portfolios
+          </Link>
         </li>
         <li>
-          <Link href="#">Careers</Link>
+          <Link href="#" onClick={() => scrollToSection("careers")}>
+            Careers
+          </Link>
         </li>
         <li>
-          <Link href="#">Contact</Link>
+          <Link href="/#contact" onClick={() => scrollToSection("contact")}>
+            Contact
+          </Link>
         </li>
       </ul>
     </nav>

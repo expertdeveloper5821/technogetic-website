@@ -26,10 +26,10 @@ const ServiceSection = ({ text, maxLength } : any) => {
 
 
   return (
-    <div className={styles["main-container"]}  ref={ref}>
-      <div className={styles["container"]}>
+    <div  className={styles["main-container"]}  ref={ref}>
+      <div className={styles["container"]} >
         <div className={styles["main-head"]}>
-          <h6>Services</h6>
+          <h6 id="services">Services</h6>
           <h1 className={inView ? styles["main-heading"]: ""}>Our Services</h1>
           <p>
             Commodo elementum, sed imperdiet nunc euismod etiam aliquet viverra

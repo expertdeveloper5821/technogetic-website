@@ -4,15 +4,17 @@
 
 
 /* Set up breakpoints */
-$breakpoint-xSmall: 414px;
-$breakpoint-xs: 680px;
-$breakpoint-tab: 769px;
-$breakpoint-sm: 900px;
-$breakpoint-tab: 768px;
-$breakpoint-md: 968px;
-$breakpoint-ms: 1024px;
-$breakpoint-lg: 1200px;
-$breakpoint-xlg: 1440px;
+
+/* Extra small devices (phones, 600px and down) */
+$breakpoint-xs: 600px;
+/* Small devices (portrait tablets and large phones, 600px and up) */
+$breakpoint-sm: 600px;
+/* Medium devices (landscape tablets, 768px and up) */
+$breakpoint-md: 768px;
+/* Large devices (laptops/desktops, 992px and up) */
+$breakpoint-lg: 992px;
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+$breakpoint-xlg: 1200px;
 
 // font family
 $bs-work-sans-font-family:Work Sans;
@@ -25,8 +27,7 @@ $bg-color: #0e0f20;
 $blue-color:#0388d8;
 
 :export {
-    //Text Colors
-  
+    //Text Colors  
     primaryColor: $white-color;
     aboutBgColor: $bg-color;
     blurColor: $blue-color;
