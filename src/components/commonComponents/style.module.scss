@@ -4,14 +4,21 @@
 /* components/Navbar.module.scss */
 .navbar {
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
   background-color: #fff;
-  padding: 1rem 22rem; /* Adjust the padding as needed */
+  padding: 1rem 0rem; /* Adjust the padding as needed */
   position: relative;
   transition: background-color 0.3s;
+  
+ 
   @media (max-width: $breakpoint-md) {
     padding: 1rem 1rem;
+  }
+  @media (min-width: $breakpoint-lg) {
+    justify-content: space-around;
+    padding: 1rem 0rem;
   }
 
   &.sticky {
