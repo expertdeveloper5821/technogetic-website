@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import styles from './common.module.scss'
-import { FaBars } from 'react-icons/fa'; // Import the toggle icon
+// import { FaBars } from 'react-icons/fa'; // Import the toggle icon
 
 const Sidebar: React.FC = () => {
   const [showSidebar, setShowSidebar] = useState(true);
@@ -14,7 +14,7 @@ const Sidebar: React.FC = () => {
   return (
     <div className={`${styles['sidebar']} ${showSidebar ? styles.show : styles.hide}`}>
       <button className="toggle-button" onClick={toggleSidebar}>
-        <FaBars />
+        {/* <FaBars /> */}
       </button>
       <nav>
         <ul>
