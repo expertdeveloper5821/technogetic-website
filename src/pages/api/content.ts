@@ -5,6 +5,7 @@ import multer from 'multer';
 import { cloudinary } from '../../server/config/cloudinary';
 import fs from 'fs';
 
+
 // Configure multer for file upload
 const upload = multer({ dest: './public/Images' });
 
@@ -15,11 +16,128 @@ export const config = {
     },
 };
 
-// Define the main API handler function
-export default async function content(req: NextApiRequest, res: NextApiResponse) {
-    try {
+// Function to upload images to Cloudinary
+async function uploadImages(files: any[]) {
+    const uploadPromises = files.map((file: { path: string; }) => cloudinary.uploader.upload(file.path));
+    return Promise.all(uploadPromises);
+}
 
-        // Check if the request method is not GET
+// Function to unlink (delete) files from the local server
+async function unlinkFiles(files: any[]) {
+    const unlinkPromises = files.map((file: { path: fs.PathLike; }) => {
+        return new Promise<void>((resolve) => {
+            fs.unlink(file.path, (err) => {
+                if (err) {
+                    console.error("Error unlinking file:", err);
+                }
+                resolve();
+            });
+        });
+    });
+    return Promise.all(unlinkPromises);
+}
+
+// Function to process new data and save it to the database
+async function processNewData(
+    reqBody: any,
+    sectionsImagesUploads: any[],
+    subSectionsImagesUploads: any[],
+    imgUploads: any[]
+) {
+    // Extract URLs from the Cloudinary uploads
+    const a = sectionsImagesUploads.map((i) => i.secure_url)
+    const b = subSectionsImagesUploads.map((i) => i.secure_url)
+    const [metaImagesUrl, faviconUrl] = imgUploads.map((upload) => upload.secure_url);
+
+    // Create a new Content object with the provided data
+    const newData = new Content({
+        pages: [
+            {
+                pageId: reqBody.pageId,
+                name: reqBody.name,
+                // Extract meta details from the request body
+                metaDetails: {
+                    title: reqBody.metaDetails.title,
+                    description: reqBody.metaDetails.description,
+                    keywords: reqBody.metaDetails.keywords,
+                    metaImages: metaImagesUrl || '',
+                    favicon: faviconUrl || '',
+                },
+                // Extract page slug from the request body
+                pageSlug: reqBody.pageSlug,
+                sections: reqBody.sections.map(
+                    (section: any) => {
+                        // Initialize arrays if they don't exist
+                        section.sectionsImages = section.sectionsImages || [];
+                        section.subSections = section.subSections || [];
+
+                        // subSectionsImages array is initialized for each subSection
+                        section.subSections.forEach((subSection: any) => {
+                            subSection.subSectionsImages = subSection.subSectionsImages || [];
+                        });
+
+                        // Push new URLs to arrays instead of overwriting them
+                        section.sectionsImages.push(
+                            ...a
+                        );
+                        section.subSections.forEach(
+                            (subSection: any) => {
+                                subSection.subSectionsImages.push(
+                                    ...b
+                                );
+                            }
+                        );
+
+                        return section;
+                    }
+                ),
+            },
+        ],
+    });
+    // Save the new data to the database
+    await newData.save();
+    return newData;
+}
+
+// Function to update existing data with new sections
+async function updateExistingData(existingData: any, sectionsImagesUploads: any[], subSectionsImagesUploads: any[], newSections: any[]) {
+
+    // Extract URLs from the Cloudinary uploads
+    const a = sectionsImagesUploads.map((i: { secure_url: any; }) => i.secure_url);
+    const b = subSectionsImagesUploads.map((i: { secure_url: any; }) => i.secure_url);
+
+    // Map over new sections to update existing data
+    const updatedSections = newSections.map((section: any) => {
+        // Initialize arrays if they don't exist
+        section.sectionsImages = section.sectionsImages || [];
+        section.subSections = section.subSections || [];
+
+        // subSectionsImages array is initialized for each subSection
+        section.subSections.forEach((subSection: any) => {
+            subSection.subSectionsImages = subSection.subSectionsImages || [];
+        });
+
+        // Push new URLs to arrays instead of overwriting them
+        section.sectionsImages.push(...a);
+        section.subSections.forEach((subSection: any) => {
+            subSection.subSectionsImages.push(...b);
+        });
+
+        return section;
+    });
+
+    // Push updated sections to existing data
+    existingData.pages[0].sections.push(...updatedSections);
+
+    // Save the updated data to the database
+    return existingData.save();
+}
+
+
+// Default function for the API endpoint
+export default async function newContent(req: NextApiRequest, res: NextApiResponse) {
+    try {
+        // Check if the request method is POST
         if (req.method !== 'POST') {
             return res.status(405).json({
                 message: 'Method Not Allowed',
@@ -31,7 +149,6 @@ export default async function content(req: NextApiRequest, res: NextApiResponse)
 
         // Use multer to handle file uploads
         await new Promise<void>((resolve, reject) => {
-            // Using upload.any() to handle all types of files
             upload.any()(req, res, (err) => {
                 if (err) {
                     console.error("Multer Error:", err);
@@ -42,109 +159,56 @@ export default async function content(req: NextApiRequest, res: NextApiResponse)
             });
         });
 
-        // Retrieve uploaded files from the request
-        const files: Express.Multer.File[] = (req as any).files;
+        // Extract uploaded files from the request
+        const files = (req as any).files;
 
-        // Extract specific files from the uploaded files
-        const metaImages = (files && files.find(file => file.fieldname === 'metaImages')) || null;
-        const sectionsImages = (files && files.find(file => file.fieldname === 'sectionsImages')) || null;
-        const subSectionsImages = (files && files.find(file => file.fieldname === 'subSectionsImages')) || null;
-        const favicon = (files && files.find(file => file.fieldname === 'favicon')) || null;
-        const pageSlug = (files && files.find(file => file.fieldname === 'pageSlug')) || null;
+        // Filter files based on field names
+        const sectionsImages = (files && files.filter((file: { fieldname: string; }) => file.fieldname.startsWith('sectionsImages'))) || [];
+        const subSectionsImages = (files && files.filter((file: { fieldname: string; }) => file.fieldname.startsWith('subSectionsImages'))) || [];
+        const metaImages = (files && files.find((file: { fieldname: string; }) => file.fieldname === 'metaImages')) || null;
+        const favicon = (files && files.find((file: { fieldname: string; }) => file.fieldname === 'favicon')) || null;
 
         // Extract data from the request body
-        const {
-            pageId,
-            name,
-            metaDetails,
-            sections,
-        } = req.body.pages[0];
+        const { pageId, name, sections } = req.body.pages[0];
 
-        // Check if a page with the same pageId and name exists in the database
+        // Check if data with the same pageId and name already exists in the database
         let existingData = await Content.findOne({ "pages.pageId": pageId, "pages.name": name });
+
+        // If data exists, update it with new sections and uploaded images
         if (existingData) {
-            const imgUploadPromises = [
-                sectionsImages ? cloudinary.uploader.upload(sectionsImages.path) : Promise.resolve(),
-                subSectionsImages ? cloudinary.uploader.upload(subSectionsImages.path) : Promise.resolve(),
-            ];
+            const sectionsImagesUploads = await uploadImages(sectionsImages);
+            const subSectionsImagesUploads = await uploadImages(subSectionsImages);
 
-            // Wait for all image uploads to complete
-            const imgUploads = await Promise.all(imgUploadPromises);
-            // Page with the same pageId and name exists, update the sections
-            existingData.pages[0].sections.push(...sections.map((section: { subSections: any[]; }) => ({
-                ...section,
-                sectionsImages: imgUploads[0] ? [imgUploads[0].secure_url] : [],
-                subSections: section.subSections.map((subSection) => ({
-                    ...subSection,
-                    subSectionsImages: imgUploads[1] ? [imgUploads[1].secure_url] : [],
-                })),
-            })),);
+            existingData = await updateExistingData(existingData, sectionsImagesUploads, subSectionsImagesUploads, sections);
 
-            existingData = await existingData.save();
-            // Unlink the file paths after successful submission
-            files.forEach((file) => {
-                fs.unlink(file.path, (err) => {
-                    if (err) {
-                        console.error("Error unlinking file:", err);
-                    }
-                });
-            });
+            // Delete uploaded files from the server
+            await unlinkFiles(files);
         } else {
-            // Prepare promises for uploading images to cloudinary
+            // If data doesn't exist, process new data and save it to the database
+            const sectionsImagesUploads = await uploadImages(sectionsImages);
+            const subSectionsImagesUploads = await uploadImages(subSectionsImages);
+
+            // Upload meta images to Cloudinary
             const imgUploadPromises = [
                 metaImages ? cloudinary.uploader.upload(metaImages.path) : Promise.resolve(),
-                sectionsImages ? cloudinary.uploader.upload(sectionsImages.path) : Promise.resolve(),
-                subSectionsImages ? cloudinary.uploader.upload(subSectionsImages.path) : Promise.resolve(),
-                pageSlug ? cloudinary.uploader.upload(pageSlug.path) : Promise.resolve(),
                 favicon ? cloudinary.uploader.upload(favicon.path) : Promise.resolve(),
             ];
 
-            // Wait for all image uploads to complete
             const imgUploads = await Promise.all(imgUploadPromises);
 
-            // Prepare updated page data with uploaded image URLs
-            const newData = new Content({
-                pages: [
-                    {
-                        pageId,
-                        name,
-                        metaDetails: {
-                            title: metaDetails.title,
-                            description: metaDetails.description,
-                            keywords: metaDetails.keywords,
-                            metaImages: imgUploads[0] ? imgUploads[0].secure_url : '',
-                            favicon: imgUploads[4] ? imgUploads[4].secure_url : '',
-                        },
-                        pageSlug: imgUploads[3] ? imgUploads[3].secure_url : '',
-                        sections: sections.map((section: { subSections: any[]; }) => ({
-                            ...section,
-                            sectionsImages: imgUploads[1] ? [imgUploads[1].secure_url] : [],
-                            subSections: section.subSections.map((subSection) => ({
-                                ...subSection,
-                                subSectionsImages: imgUploads[2] ? [imgUploads[2].secure_url] : [],
-                            })),
-                        })),
-                    },
-                ],
-            })
+            // Process and save new data to the database
+            const newData = await processNewData(req.body.pages[0], sectionsImagesUploads, subSectionsImagesUploads, imgUploads);
 
-            // Create a new Content document and save it to the database
-            await newData.save();
+            // Delete uploaded files from the server
+            await unlinkFiles(files);
 
-            // Unlink the file paths after successful submission
-            files.forEach((file) => {
-                fs.unlink(file.path, (err) => {
-                    if (err) {
-                        console.error("Error unlinking file:", err);
-                    }
-                });
-            });
-
+            // Respond with success message and the new data
             return res.status(201).json({ message: 'Submit successfully!', data: newData });
         }
+        // Respond with success message and the updated existing data
         return res.status(201).json({ message: 'Submit successfully!', data: existingData });
     } catch (error) {
-        console.error("Error in content API :", error);
+        console.error("Error in content API:", error);
         return res.status(500).json({ error: 'Error in content API.' });
     }
 }

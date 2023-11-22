@@ -5,6 +5,7 @@ const contentSchema: Schema = new Schema({
     {
       pageId: {type : Number, required:false},
       name: {type : String, required:false},
+      pageSlug: {type : String, required:false},
       metaDetails: {
         title: {type : String, required:false},
         description: {type : String, required:false},
@@ -12,7 +13,6 @@ const contentSchema: Schema = new Schema({
         metaImages: { type: String, required: false },
         favicon: {type : String, required:false},
       },
-      pageSlug: {type : String, required:false},
       sections: [
         {
           sectionId: {type : Number, required:false},
