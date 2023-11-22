@@ -12,6 +12,7 @@ import Testimonial from "./testimonialsSection/page";
 import JoinUs from "./joinUsSection/page";
 import Blog from "./blogSection/page";
 import Head from "next/head";
+// import HorizontalScroll from "@/components/HorizontalScroll/HorizontalScroll";
 
 const LandingPage = () => {
   return (
@@ -28,14 +29,16 @@ const LandingPage = () => {
           <Header />
           <BannerSection />
         </div>
-        <AboutSection id="about"/>
-        <ServiceSection />
-        <ClientSection />
-        <WorkSection />
-        <Testimonial />
-        <JoinUs />
-        <Blog />
-        <Footer />
+        {/* <HorizontalScroll> */}
+          <AboutSection />
+          <ServiceSection />
+          <ClientSection />
+          <WorkSection />
+          <Testimonial />
+          <JoinUs />
+          <Blog />
+          <Footer />
+        {/* </HorizontalScroll> */}
       </div>
     </>
   );

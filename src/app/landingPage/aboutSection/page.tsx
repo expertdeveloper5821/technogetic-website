@@ -1,11 +1,16 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState,useRef, useEffect } from "react";
 import styles from "./styles.module.scss";
 import Image from "next/image";
+import { gsap } from 'gsap';
 import CommonButton from "@/components/buttonComponent/page";
 import { useInView } from "react-intersection-observer";
 import ReadMoreButton from "@/components/commonComponents/readMore/page";
 import AutoNumberCounter from "@/components/commonComponents/autoNumberCounter";
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
 interface AboutSectionProps {
   text: string;
   maxLength: number;
@@ -13,6 +18,20 @@ interface AboutSectionProps {
 
 const AboutSection = ({ text, maxLength } : any ) => {
   const [isExpanded, setIsExpanded] = useState(false);
+ 
+  useEffect(() => {
+    gsap.from('.your-element', {
+      opacity: 100,
+      y: 0,
+      duration: 1,
+      scrollTrigger: {
+        trigger: '.your-element',
+        start: 'top center+=1000',
+        end: 'bottom center-=100',
+        scrub: 0.5,
+      },
+    });
+  }, []);
 
   const paragraphText = `
   Commodo elementum, sed imperdiet nunc euismod etiam aliquet
@@ -29,7 +48,7 @@ const AboutSection = ({ text, maxLength } : any ) => {
   });
 
   return (
-    <div >
+    <div  className="your-element">
       <div className={styles["main-container"]}>
         <div className={styles["container"]}>
           <div className={styles["section-one"]}>
@@ -54,7 +73,7 @@ const AboutSection = ({ text, maxLength } : any ) => {
           </div>
         </div>
       </div>
-      <div className={styles["about-us"]} ref={ref}>
+      <div className={styles["about-us"]}  ref={ref}>
         <div className={styles["about"]}>
           <div className={inView ? styles["about-img"] : " "}>
             <Image

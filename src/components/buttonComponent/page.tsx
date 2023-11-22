@@ -3,7 +3,7 @@ import React, { FunctionComponent, MouseEvent } from "react";
 interface CommonButtonProps {
   text: string;
   onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
-  type?: "primary" | "secondary";
+  type?: "primary" | "secondary" | "submit" | undefined;
   className?: string; // Allow passing a custom class name
 }
 
