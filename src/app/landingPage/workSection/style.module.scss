@@ -1,12 +1,25 @@
 @import "../../../styles/globals.scss";
-@import "../../../styles/variables";
+@import "../../../styles/_variables";
 
 .main-container {
   background-color: $bg-color;
   padding: 0px 0px 100px 0px;
+  @media screen and (max-width: $breakpoint-md) {
+    padding: 40px 16px 40px 16px;
+  }
+
+  @media screen and (max-width: $breakpoint-xs) {
+    padding: 40px 16px 40px 16px;
+  }
 }
 .main-head {
   width: 55%;
+  @media screen and (max-width: $breakpoint-md) {
+    width: 100%;
+  }
+  @media screen and (max-width: $breakpoint-xs) {
+    width:100%;
+  }
 }
 .container,
 .services {
@@ -15,8 +28,15 @@
   margin-right: auto;
   margin-left: auto;
   position: relative;
+  @media screen and (max-width: $breakpoint-md) {
+    flex-direction: column;
+  }
+  @media screen and (max-width: $breakpoint-xs) {
+    flex-direction: column;
+  }
 }
-.main-head h6, .work-title h6 {
+.main-head h6,
+.work-title h6 {
   margin-bottom: 16px;
   font-size: 13px;
   font-family: $bs-work-sans-font-family;
@@ -29,21 +49,33 @@
 .main-head h1,
 .box-title h3 {
   font-size: 60px;
+  @media screen and (max-width: $breakpoint-md) {
+    font-size: 32px;
+  }
+  @media screen and (max-width: $breakpoint-xs) {
+    font-size: 32px;
+  }
 }
-.work-title h2, .main-head h1,
+.work-title h2,
+.main-head h1,
 .box-title h3 {
   font-family: $bs-work-sans-font-family;
-font-style: normal;
-font-weight: bold;
-line-height: 1.111em;
-margin-bottom: 16px;
-color: $white-color;
+  font-style: normal;
+  font-weight: bold;
+  line-height: 1.111em;
+  margin-bottom: 16px;
+  color: $white-color;
 }
-
 
 .work-title h2 {
   font-size: 36px;
- 
+  @media screen and (max-width: $breakpoint-md) {
+    font-size: 24px;
+  }
+
+  @media screen and (max-width: $breakpoint-xs) {
+    font-size: 24px;
+  }
 }
 
 .main-head p {
@@ -76,6 +108,15 @@ color: $white-color;
 .box-two {
   width: 50%;
   padding: 64px 64px 64px 64px;
+  @media screen and (max-width: $breakpoint-md) {
+    width: 100%;
+    padding: 32px 32px 32px 32px;
+  }
+
+  @media screen and (max-width: $breakpoint-xs) {
+    width: 100%;
+    padding: 32px 32px 32px 32px;
+  }
 }
 
 .custom-btn {
@@ -93,6 +134,13 @@ color: $white-color;
 
 .services-box {
   display: flex;
+  @media screen and (max-width: $breakpoint-md) {
+    flex-direction: column;
+  }
+
+  @media screen and (max-width: $breakpoint-xs) {
+    flex-direction: column;
+  }
 }
 
 .box-two {
@@ -106,14 +154,14 @@ color: $white-color;
   line-height: 1.5em;
 }
 
-.work-btn{
+.work-btn {
   width: 50%;
   display: flex;
   justify-content: end;
   margin: 31px 0px;
 }
 
-.work-button{
+.work-button {
   border-style: solid;
   border-width: 0px 0px 0px 0px;
   border-radius: 100px 100px 100px 100px;
@@ -126,19 +174,56 @@ color: $white-color;
   font-style: normal;
 }
 
-.header-btn:hover{
-  -webkit-animation: mover 1s infinite  alternate;
-  animation: mover 1s infinite  alternate;
+.header-btn:hover {
+  -webkit-animation: mover 1s infinite alternate;
+  animation: mover 1s infinite alternate;
 }
-.header-btn:hover{
-  -webkit-animation: mover 1s infinite  alternate;
-  animation: mover 1s infinite  alternate;
+.header-btn:hover {
+  -webkit-animation: mover 1s infinite alternate;
+  animation: mover 1s infinite alternate;
 }
 @-webkit-keyframes mover {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-10px); }
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
 }
 @keyframes mover {
-  0% { transform: translateY(0); }
-  100% { transform: translateY(-10px); }
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+.box1 {
+  animation: fadeInLeft 1s ease-in-out;
+  width: 50%;
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-300px);
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.box-two {
+  animation: fadeInRight 1s ease-in-out;
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(300px);
+  }
+  to {
+    opacity: 1;
+  }
 }

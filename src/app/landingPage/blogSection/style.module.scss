@@ -1,12 +1,24 @@
 @import "../../../styles/globals.scss";
-@import "../../../styles/variables";
+@import "../../../styles/_variables";
 
-.main-container { 
-    background-color: $bg-color;
-    padding: 50px 0px 100px 0px;;
+.main-container {
+  background-color: $bg-color;
+  padding: 50px 0px 100px 0px;
+  @media screen and (max-width: $breakpoint-md) {
+    padding: 40px 16px 40px 16px;
+  }
+  @media screen and (max-width: $breakpoint-xs) {
+    padding: 40px 16px 40px 16px;
+  }
 }
 .main-head {
   width: 55%;
+  @media screen and (max-width: $breakpoint-md) {
+    width: 100%;
+  }
+  @media screen and (max-width: $breakpoint-xs) {
+    width: 100%;
+  }
 }
 .container,
 .services {
@@ -15,6 +27,12 @@
   margin-right: auto;
   margin-left: auto;
   position: relative;
+  @media screen and (max-width: $breakpoint-md) {
+    flex-direction: column;
+  }
+  @media screen and (max-width: $breakpoint-xs) {
+    flex-direction: column;
+  }
 }
 
 .main-head h6,
@@ -28,15 +46,20 @@
   color: $blue-color;
 }
 
-
-
 .main-head h1,
 .box-title h3 {
   font-size: 60px;
+  @media screen and (max-width: $breakpoint-md) {
+    font-size: 45px;
+  }
+  @media screen and (max-width: $breakpoint-xs) {
+    font-size: 45px;
+  }
 }
 
 .main-head h1,
-.box-title h3, .work-title h2 {
+.box-title h3,
+.work-title h2 {
   font-family: $bs-work-sans-font-family;
   font-style: normal;
   font-weight: bold;
@@ -45,11 +68,11 @@
 }
 
 .main-head h1,
-.box-title h3{
+.box-title h3 {
   color: $white-color;
 }
 
-.work-title h2{
+.work-title h2 {
   color: #0e0f20;
   font-size: 32px;
 }
@@ -81,9 +104,8 @@
     0.3s,
     border 0.3s,
     border-radius 0.3s,
-    box-shadow 0.3s;      
+    box-shadow 0.3s;
 }
-
 
 .custom-btn {
   border-style: solid;
@@ -102,6 +124,14 @@
   background-color: $white-color;
   width: 50%;
   margin: 10px 10px;
+  @media screen and (max-width: $breakpoint-md) {
+    width: 100%;
+    margin: 10px 0px;
+  }
+  @media screen and (max-width: $breakpoint-xs) {
+    width: 100%;
+    margin: 10px 0px;
+  }
 }
 
 .box-two {
@@ -111,7 +141,7 @@
 .box p {
   margin-bottom: 32px;
   font-size: 16px;
-  color: #0E0F2099;
+  color: #0e0f2099;
   font-family: $bs-work-sans-font-family;
   line-height: 1.5em;
 }
@@ -136,50 +166,68 @@
   font-style: normal;
 }
 
-.testimonial-section{
+.testimonial-section {
   background-color: #0e0f20;
   opacity: 0.9;
-  transition: border-radius 0.3s, opacity 0.3s;
-  padding: 100px 0px 100px 0px;
+  transition:
+    border-radius 0.3s,
+    opacity 0.3s;
+  padding: 100px 0px 200px 0px;
+  @media screen and (max-width: $breakpoint-md) {
+    padding: 0px 0px 0px 0px;
+  }
+  @media screen and (max-width: $breakpoint-sm) {
+    padding: 0px 0px 0px 0px;
+  }
+  @media screen and (max-width: $breakpoint-md) {
+    padding: 0px 0px 0px 0px;
+  }
+  @media screen and (max-width: $breakpoint-xs) {
+    padding: 0px 0px 0px 0px;
+  }
+  @media screen and (max-width: $breakpoint-xs) {
+    padding: 0px 0px 0px 0px;
+  }
 }
 
 
-.blog-details{
-    padding: 16px 16px 16px 16px;
-}
 
-.blog-details h5{
-    font-size: 16px;
-    font-family: $bs-work-sans-font-family;
-    margin-bottom: 8px;
+.blog-details {
+  padding: 16px 16px 16px 16px;
 }
 
 .blog-details p {
-    font-size: 12px;
+  font-size: 12px;
+  // font-family: $bs-work-sans-font-family;
+  margin-bottom: 8px;
 }
 
-.client-name{
+.date{
+  font-size: 12px;
+  font-family: $bs-work-sans-font-family;
+  margin-bottom: 8px;
+}
+
+.client-name {
   padding: 16px 0px 0px 30px;
 }
 
-
-.client-name h5{
+.client-name h5 {
   font-family: $bs-work-sans-font-family;
   margin-bottom: 8px;
   font-size: 20px;
   color: #0e0f20;
 }
 
-.client-name h6{
+.client-name h6 {
   color: #00b9c5;
   font-size: 13px;
   font-family: $bs-work-sans-font-family;
   letter-spacing: 4px;
 }
 
-
 //animation css
-.header-btn:hover{
+.header-btn:hover {
   -webkit-animation: mover 1s infinite alternate;
   animation: mover 1s infinite alternate;
 }
