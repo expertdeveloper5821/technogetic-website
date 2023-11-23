@@ -112,7 +112,7 @@ export default async function updateContent(req: NextApiRequest, res: NextApiRes
 
     // Use multer to handle file uploads
     await new Promise<void>((resolve, reject) => {
-      upload.any()(req, res, (err) => {
+      upload.any()(req as any, res as any, (err) => {
         if (err) {
           console.error("Multer Error:", err);
           reject(err);
