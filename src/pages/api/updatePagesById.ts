@@ -1,10 +1,11 @@
 // Import necessary modules and models
 import { NextApiRequest, NextApiResponse } from 'next';
 import connect from '../../server/config/db';
-import Content from '../../server/models/content';
+import Page from '../../server/models/pages';
 import multer from 'multer';
 import { cloudinary } from '../../server/config/cloudinary';
 import fs from 'fs';
+import authMiddleware from '../../server/middleware/tokenVerify';
 
 // Configure multer for file upload
 const upload = multer({ dest: './public/Images' });
@@ -49,19 +50,19 @@ async function updateExistingData(
   // Extract URLs from the Cloudinary uploads
   const a = sectionsImagesUploads.map((i) => i.secure_url)
   const b = subSectionsImagesUploads.map((i) => i.secure_url)
-  const [metaImagesUrl, faviconUrl] = imgUploads.map((upload) => upload.secure_url);
+  const [ogimageUrl, faviconUrl] = imgUploads.map((upload) => upload.secure_url);
 
 
   // Construct the update object
   const updateObject = {
     $set: {
-      'pages.$[page].pageSlug': reqBody.pageSlug,
-      'pages.$[page].metaDetails.title': reqBody.metaDetails.title,
-      'pages.$[page].metaDetails.description': reqBody.metaDetails.description,
-      'pages.$[page].metaDetails.keywords': reqBody.metaDetails.keywords,
-      'pages.$[page].metaDetails.metaImages': metaImagesUrl || '',
-      'pages.$[page].metaDetails.favicon': faviconUrl || '',
-      'pages.$[page].sections.$[section]': reqBody.sections.map((section: any) => ({
+      'pageSlug': reqBody.pageSlug,
+      'metaDetails.title': reqBody.metaDetails.title,
+      'metaDetails.description': reqBody.metaDetails.description,
+      'metaDetails.keywords': reqBody.metaDetails.keywords || [],
+      'metaDetails.ogImage': ogimageUrl || '',
+      'metaDetails.favicon': faviconUrl || '',
+      'sections.$[section]': reqBody.sections.map((section: any) => ({
         ...section,
         sectionsImages: [...a],
         subSections: Array.isArray(section.subSections) ?
@@ -77,15 +78,13 @@ async function updateExistingData(
 
   // Set arrayFilters for positional matching
   const arrayFilters = [
-    { 'page.pageId': parseInt(pageId) },
-    { 'section.sectionId': parseInt(sectionId) },
+    { 'section._id': sectionId },
   ];
 
   // Update the document based on pageId and sectionId
-  const updatedData = await Content.findOneAndUpdate(
+  const updatedData = await Page.findOneAndUpdate(
     {
-      'pages.pageId': pageId,
-      'pages.sections.sectionId': sectionId,
+      '_id': pageId,
     },
     updateObject,
     {
@@ -110,6 +109,9 @@ export default async function updateContent(req: NextApiRequest, res: NextApiRes
     // Connect to the database
     await connect();
 
+    // Call the auth middleware
+    await authMiddleware(req, res);
+
     // Use multer to handle file uploads
     await new Promise<void>((resolve, reject) => {
       upload.any()(req as any, res as any, (err) => {
@@ -125,9 +127,9 @@ export default async function updateContent(req: NextApiRequest, res: NextApiRes
     const { pageId, sectionId } = req.query;
 
     // Find the content based on pageId and sectionId
-    const existingData = await Content.findOne({
-      'pages.pageId': pageId,
-      'pages.sections.sectionId': sectionId,
+    const existingData = await Page.findOne({
+      '_id': pageId,
+      'sections._id': sectionId,
     });
 
     // If the content is not found, return an error
@@ -143,7 +145,7 @@ export default async function updateContent(req: NextApiRequest, res: NextApiRes
     // Filter files based on field names
     const sectionsImages = (files && files.filter((file: { fieldname: string; }) => file.fieldname.startsWith('sectionsImages'))) || [];
     const subSectionsImages = (files && files.filter((file: { fieldname: string; }) => file.fieldname.startsWith('subSectionsImages'))) || [];
-    const metaImages = (files && files.find((file: { fieldname: string; }) => file.fieldname === 'metaImages')) || null;
+    const ogImage = (files && files.find((file: { fieldname: string; }) => file.fieldname === 'ogImage')) || null;
     const favicon = (files && files.find((file: { fieldname: string; }) => file.fieldname === 'favicon')) || null;
 
     const sectionsImagesUploads = await uploadImages(sectionsImages);
@@ -151,14 +153,14 @@ export default async function updateContent(req: NextApiRequest, res: NextApiRes
 
     // Upload meta images to Cloudinary
     const imgUploadPromises = [
-      metaImages ? cloudinary.uploader.upload(metaImages.path) : Promise.resolve(),
+      ogImage ? cloudinary.uploader.upload(ogImage.path) : Promise.resolve(),
       favicon ? cloudinary.uploader.upload(favicon.path) : Promise.resolve(),
     ];
 
     const imgUploads = await Promise.all(imgUploadPromises);
 
     // Process and save updated data to the database
-    const updatedData = await updateExistingData(req.body.pages[0], sectionsImagesUploads, subSectionsImagesUploads, imgUploads, pageId, sectionId);
+    const updatedData = await updateExistingData(req.body, sectionsImagesUploads, subSectionsImagesUploads, imgUploads, pageId, sectionId);
 
     // Delete uploaded files from the server
     await unlinkFiles(files);

@@ -1,16 +1,17 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
 
 interface ISubSection extends Document {
-  subSectionId?: number;
+  name?: string;
   title?: string;
   subTitle?: string;
   description?: string;
   shortDescription?: string;
   subSectionsImages?: string[];
+  type?: string;
+  cta?: string;
 }
 
 interface ISection extends Document {
-  sectionId?: number;
   name?: string;
   title?: string;
   subTitle?: string;
@@ -23,34 +24,30 @@ interface ISection extends Document {
 }
 
 interface IPage extends Document {
-  pageId?: number;
-  name?: string;
+  pageName?: string;
   pageSlug?: string;
   metaDetails?: {
     title?: string;
     description?: string;
-    keywords?: string;
-    metaImages?: string;
+    keywords?: string[];
+    ogImage?: string;
     favicon?: string;
   };
   sections?: ISection[];
 }
 
-interface IContent extends Document {
-  pages?: IPage[];
-}
-
 const SubSectionSchema: Schema = new Schema({
-  subSectionId: { type: Number, required: false },
+  name: { type: String, required: false },
   title: { type: String, required: false },
   subTitle: { type: String, required: false },
   description: { type: String, required: false },
   shortDescription: { type: String, required: false },
   subSectionsImages: [{ type: String, required: false }],
+  type: { type: String, required: false },
+  cta: { type: String, required: false },
 });
 
 const SectionSchema: Schema = new Schema({
-  sectionId: { type: Number, required: false },
   name: { type: String, required: false },
   title: { type: String, required: false },
   subTitle: { type: String, required: false },
@@ -63,31 +60,26 @@ const SectionSchema: Schema = new Schema({
 });
 
 const PageSchema: Schema = new Schema({
-  pageId: { type: Number, required: false },
-  name: { type: String, required: false },
+  pageName: { type: String, required: false },
   pageSlug: { type: String, required: false },
   metaDetails: {
     title: { type: String, required: false },
     description: { type: String, required: false },
-    keywords: { type: String, required: false },
-    metaImages: { type: String, required: false },
+    keywords: [{ type: String, required: false }],
+    ogImage: { type: String, required: false },
     favicon: { type: String, required: false },
   },
   sections: [SectionSchema],
-});
-
-const ContentSchema: Schema = new Schema({
-  pages: [PageSchema],
 }, { timestamps: true });
 
-let Content: Model<IContent>;
+let Page: Model<IPage>;
 
 try {
   // Try to retrieve the model if it exists
-  Content = mongoose.model<IContent>("Content");
+  Page = mongoose.model<IPage>("Page");
 } catch {
   // If it doesn't exist, create and compile the model
-  Content = mongoose.model<IContent>("Content", ContentSchema);
+  Page = mongoose.model<IPage>("Page", PageSchema);
 }
 
-export default Content;
+export default Page;

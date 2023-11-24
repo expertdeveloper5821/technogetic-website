@@ -1,9 +1,10 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import connect from '../../server/config/db';
-import Content from '../../server/models/content';
+import Page from '../../server/models/pages';
 import multer from 'multer';
 import { cloudinary } from '../../server/config/cloudinary';
 import fs from 'fs';
+import authMiddleware from '../../server/middleware/tokenVerify';
 
 
 // Configure multer for file upload
@@ -47,24 +48,21 @@ async function processNewData(
     // Extract URLs from the Cloudinary uploads
     const a = sectionsImagesUploads.map((i) => i.secure_url)
     const b = subSectionsImagesUploads.map((i) => i.secure_url)
-    const [metaImagesUrl, faviconUrl] = imgUploads.map((upload) => upload.secure_url);
+    const [ogimageUrl, faviconUrl] = imgUploads.map((upload) => upload.secure_url);
 
     // Create a new Content object with the provided data
-    const newData = new Content({
-        pages: [
-            {
-                pageId: reqBody.pageId,
-                name: reqBody.name,
+    const newData = new Page({
+                pageName: reqBody.pageName,
+                pageSlug: reqBody.pageSlug,
                 // Extract meta details from the request body
                 metaDetails: {
                     title: reqBody.metaDetails.title,
                     description: reqBody.metaDetails.description,
-                    keywords: reqBody.metaDetails.keywords,
-                    metaImages: metaImagesUrl || '',
+                    keywords: reqBody.metaDetails.keywords || [],
+                    ogImage: ogimageUrl || '',
                     favicon: faviconUrl || '',
                 },
                 // Extract page slug from the request body
-                pageSlug: reqBody.pageSlug,
                 sections: reqBody.sections.map(
                     (section: any) => {
                         // Initialize arrays if they don't exist
@@ -91,8 +89,6 @@ async function processNewData(
                         return section;
                     }
                 ),
-            },
-        ],
     });
     // Save the new data to the database
     await newData.save();
@@ -127,7 +123,7 @@ async function updateExistingData(existingData: any, sectionsImagesUploads: any[
     });
 
     // Push updated sections to existing data
-    existingData.pages[0].sections.push(...updatedSections);
+    existingData.sections.push(...updatedSections);
 
     // Save the updated data to the database
     return existingData.save();
@@ -147,6 +143,9 @@ export default async function newContent(req: NextApiRequest, res: NextApiRespon
         // Connect to the database
         await connect();
 
+        // Call the auth middlware
+        await authMiddleware(req, res);
+
         // Use multer to handle file uploads
         await new Promise<void>((resolve, reject) => {
             upload.any()(req as any, res as any, (err) => {
@@ -165,14 +164,14 @@ export default async function newContent(req: NextApiRequest, res: NextApiRespon
         // Filter files based on field names
         const sectionsImages = (files && files.filter((file: { fieldname: string; }) => file.fieldname.startsWith('sectionsImages'))) || [];
         const subSectionsImages = (files && files.filter((file: { fieldname: string; }) => file.fieldname.startsWith('subSectionsImages'))) || [];
-        const metaImages = (files && files.find((file: { fieldname: string; }) => file.fieldname === 'metaImages')) || null;
+        const ogImage = (files && files.find((file: { fieldname: string; }) => file.fieldname === 'ogImage')) || null;
         const favicon = (files && files.find((file: { fieldname: string; }) => file.fieldname === 'favicon')) || null;
 
         // Extract data from the request body
-        const { pageId, name, sections } = req.body.pages[0];
+        const { pageName, sections } = req.body;
 
         // Check if data with the same pageId and name already exists in the database
-        let existingData = await Content.findOne({ "pages.pageId": pageId, "pages.name": name });
+        let existingData = await Page.findOne({ "pageName": pageName });
 
         // If data exists, update it with new sections and uploaded images
         if (existingData) {
@@ -190,14 +189,14 @@ export default async function newContent(req: NextApiRequest, res: NextApiRespon
 
             // Upload meta images to Cloudinary
             const imgUploadPromises = [
-                metaImages ? cloudinary.uploader.upload(metaImages.path) : Promise.resolve(),
+                ogImage ? cloudinary.uploader.upload(ogImage.path) : Promise.resolve(),
                 favicon ? cloudinary.uploader.upload(favicon.path) : Promise.resolve(),
             ];
 
             const imgUploads = await Promise.all(imgUploadPromises);
 
             // Process and save new data to the database
-            const newData = await processNewData(req.body.pages[0], sectionsImagesUploads, subSectionsImagesUploads, imgUploads);
+            const newData = await processNewData(req.body, sectionsImagesUploads, subSectionsImagesUploads, imgUploads);
 
             // Delete uploaded files from the server
             await unlinkFiles(files);

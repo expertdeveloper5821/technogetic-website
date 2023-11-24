@@ -1,9 +1,9 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import connect from '../../server/config/db';
-import Content from '../../server/models/content';
+import Page from '../../server/models/pages';
 
 // Define the API endpoint handler
-export default async function getContentById(req: NextApiRequest, res: NextApiResponse) {
+export default async function getPageById(req: NextApiRequest, res: NextApiResponse) {
     try {
 
         // Check if the request method is not GET
@@ -27,8 +27,8 @@ export default async function getContentById(req: NextApiRequest, res: NextApiRe
         }
 
         // Query the database to find the content by pageId
-        const content = await Content.findOne({
-            'pages.pageId': pageId,
+        const content = await Page.findOne({
+            '_id': pageId,
         });
 
         // Check if content is found
