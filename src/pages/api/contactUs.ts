@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from "uuid";
 import { emailValidate } from '../../server/middleware/helper';
 import { transporter } from "../../server/middleware/email";
 import { environmentConfig } from "../../server/config/environmentConfig";
+import { createEmailTemplate } from '../../server/middleware/emailTemplates';
 
 export default async function contactUs(req: NextApiRequest, res: NextApiResponse) {
     try {
@@ -46,29 +47,29 @@ export default async function contactUs(req: NextApiRequest, res: NextApiRespons
                 // Update the existing user in the database
                 await existingUser.save();
 
-                // Send email with existing user details
+                const emailTemplate = createEmailTemplate(fullName, email, phoneNumber, subject, message, false)
+
+                // Send email with existing user details to Email From
+                await transporter.sendMail({
+                    from: environmentConfig.EMAIL_FROM,
+                    to: environmentConfig.EMAIL_USER,
+                    subject: "Technogetic Private Limited",
+                    html: emailTemplate
+                });
+
+                const isUserSubmission = true;
+                const userEmailTemplate = createEmailTemplate(fullName, email, phoneNumber, subject, message, isUserSubmission);
+
+                // Send email with existing user details to user email
                 await transporter.sendMail({
                     from: environmentConfig.EMAIL_FROM,
                     to: email,
                     subject: "Technogetic Private Limited",
-                    html: `<p><strong>New message from ${fullName}</strong></p>
-                        <p><strong>User Information</strong></p>
-                        <p><strong>Name:</strong> ${fullName}</p>
-                        <p><strong>Email:</strong> ${email}</p>
-                        <p><strong>Phone:</strong> ${phoneNumber}</p>
-                        <p><strong>Subject:</strong> ${subject}</p>
-                        <p><strong>Message:</strong> ${message}</p>`,
+                    html: userEmailTemplate,
                 });
 
                 return res.status(200).json({
                     message: "Thank you for submitting your details.",
-                    data: {
-                        fullName,
-                        email,
-                        phoneNumber,
-                        subject,
-                        message,
-                    },
                 });
             } else {
                 // If email does not exist, create a new user
@@ -89,30 +90,30 @@ export default async function contactUs(req: NextApiRequest, res: NextApiRespons
                 // Save the new user in the database
                 const userSave = await newUser.save();
 
-                // Send email with existing user details
+                const emailTemplate = createEmailTemplate(fullName, email, phoneNumber, subject, message, false)
+
+                // Send email with existing user details to Email From
+                await transporter.sendMail({
+                    from: environmentConfig.EMAIL_FROM,
+                    to: environmentConfig.EMAIL_USER,
+                    subject: "Technogetic Private Limited",
+                    html: emailTemplate
+                });
+
+                const isUserSubmission = true;
+                const userEmailTemplate = createEmailTemplate(fullName, email, phoneNumber, subject, message, isUserSubmission);
+
+                // Send email with existing user details to user email
                 await transporter.sendMail({
                     from: environmentConfig.EMAIL_FROM,
                     to: email,
                     subject: "Technogetic Private Limited",
-                    html: `<p><strong>New message from ${fullName}</strong></p>
-                        <p><strong>User Information</strong></p>
-                        <p><strong>Name:</strong> ${fullName}</p>
-                        <p><strong>Email:</strong> ${email}</p>
-                        <p><strong>Phone:</strong> ${phoneNumber}</p>
-                        <p><strong>Subject:</strong> ${subject}</p>
-                        <p><strong>Message:</strong> ${message}</p>`,
+                    html: userEmailTemplate,
                 });
 
                 if (userSave._id) {
                     return res.status(200).json({
                         message: "Thank you for submitting your details.",
-                        data: {
-                            fullName,
-                            email,
-                            phoneNumber,
-                            subject,
-                            message,
-                        },
                     });
                 } else {
                     return res.status(500).json({ message: "Details not submitted" });
@@ -120,7 +121,7 @@ export default async function contactUs(req: NextApiRequest, res: NextApiRespons
             }
         }
     } catch (error) {
-        console.error('Error in contactUs API',error);
+        console.error('Error in contactUs API', error);
         return res.status(500).json({ error: "Error in contactUs API" });
     }
 }

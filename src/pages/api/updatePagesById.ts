@@ -166,7 +166,7 @@ export default async function updateContent(req: NextApiRequest, res: NextApiRes
     await unlinkFiles(files);
 
     // Respond with success message and the updated data
-    return res.status(200).json({ message: 'Update successfully!', data: updatedData });
+    return res.status(200).json({ message: 'Update successfully!', updatedData });
 
   } catch (error) {
     console.error("Error in content API:", error);

@@ -202,10 +202,10 @@ export default async function newContent(req: NextApiRequest, res: NextApiRespon
             await unlinkFiles(files);
 
             // Respond with success message and the new data
-            return res.status(201).json({ message: 'Submit successfully!', data: newData });
+            return res.status(201).json({ message: 'Submit successfully!', newData });
         }
         // Respond with success message and the updated existing data
-        return res.status(201).json({ message: 'Submit successfully!', data: existingData });
+        return res.status(201).json({ message: 'Submit successfully!', existingData });
     } catch (error) {
         console.error("Error in content API:", error);
         return res.status(500).json({ error: 'Error in content API.' });

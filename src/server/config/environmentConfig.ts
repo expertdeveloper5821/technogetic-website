@@ -12,6 +12,7 @@ export interface EnvironmentConfig {
   CLOUD_NAME: string;
   API_KEY: string;
   API_SECRET: string;
+  TG_WEBSITE: string;
 
 }
 
@@ -26,4 +27,5 @@ export const environmentConfig: EnvironmentConfig = {
   CLOUD_NAME: process.env.cloudName || 'cloudName',
   API_KEY: process.env.apiKey || 'Apikey',
   API_SECRET: process.env.apiSecret || 'ApiSecret',
+  TG_WEBSITE: process.env.tgWebSite || 'www.technogetic.com'
 };
