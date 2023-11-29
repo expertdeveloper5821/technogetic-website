@@ -4,16 +4,15 @@
 /* components/Navbar.module.scss */
 .navbar {
   display: flex;
-  // justify-content: space-between;
   justify-content: space-around;
   align-items: center;
   background-color: #fff;
   padding: 1rem 0rem; /* Adjust the padding as needed */
   position: relative;
   transition: background-color 0.3s;
-  
- 
+
   @media (max-width: $breakpoint-md) {
+    justify-content: space-between;
     padding: 1rem 1rem;
   }
 
@@ -230,33 +229,31 @@
   // @media screen and (max-width: $breakpoint-md) {
   //   width: 100%;
   //  }
- 
-   @media screen and (max-width: $breakpoint-xs) {
-     width: 100%;
-   }
+
+  @media screen and (max-width: $breakpoint-xs) {
+    width: 100%;
+  }
 }
 
 .form {
   display: flex;
   gap: 10px;
-  // @media screen and (max-width: $breakpoint-md) {
-  //   flex-direction: column;
-  //  }
- 
-   @media screen and (max-width: $breakpoint-xs) {
-     flex-direction: column;
-   }
+  @media screen and (max-width: $breakpoint-xs) {
+    flex-direction: column;
+  }
 }
 
 .footer {
   margin: 54px 0px;
   display: flex;
   @media screen and (max-width: $breakpoint-md) {
+    margin: 0px 0px;
     flex-direction: column;
     padding: 0px 16px 0px 16px;
   }
 
   @media screen and (max-width: $breakpoint-xs) {
+    margin: 0px 0px;
     flex-direction: column;
     padding: 0px 16px 0px 16px;
   }
@@ -282,7 +279,7 @@
 
 .footer-contact,
 .footer-information,
-.footer-service {
+.footer-service,.footer-column {
   width: 25%;
   @media screen and (max-width: $breakpoint-md) {
     width: 100%;
@@ -299,6 +296,13 @@
 .footer-information h3,
 .footer-service h3 {
   padding-bottom: 32px;
+  @media screen and (max-width: $breakpoint-md) {
+    padding-bottom: 15px;
+  }
+
+  @media screen and (max-width: $breakpoint-xs) {
+    padding-bottom: 15px;
+  }
 }
 
 .info h6,
