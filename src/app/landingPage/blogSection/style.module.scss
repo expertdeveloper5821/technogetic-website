@@ -11,6 +11,7 @@
     padding: 40px 16px 40px 16px;
   }
 }
+
 .main-head {
   width: 55%;
   @media screen and (max-width: $breakpoint-md) {
@@ -20,6 +21,8 @@
     width: 100%;
   }
 }
+
+
 .container,
 .services {
   max-width: 1170px;
@@ -243,11 +246,28 @@
     transform: translateY(-10px);
   }
 }
+
 @keyframes mover {
   0% {
     transform: translateY(0);
   }
   100% {
     transform: translateY(-10px);
+  }
+}
+
+
+.main-head .main-heading {
+  animation: fadeInDown 3s ease forwards;
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

@@ -1,8 +1,8 @@
-import React, { FunctionComponent, MouseEvent } from "react";
+import React, { FunctionComponent, MouseEvent, FormEvent } from "react";
 
 interface CommonButtonProps {
   text: string;
-  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (event: MouseEvent<HTMLButtonElement> | FormEvent<HTMLFormElement>) => void;
   type?: "primary" | "secondary" | "submit" | undefined;
   className?: string; // Allow passing a custom class name
 }

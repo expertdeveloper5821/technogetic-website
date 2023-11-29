@@ -3,10 +3,14 @@ import React, { useEffect, useState } from "react";
 import styles from "./style.module.scss";
 import Image from "next/image";
 import { getBlogPosts } from "@/api/api-data";
+import { useInView } from "react-intersection-observer";
+
+interface Blog {
+  className: string;}
 
 interface BlogPost {
-  id: number;
-  title: {
+  id?: number;
+  title?: {
     rendered: string;
   };
   content: {
@@ -15,7 +19,7 @@ interface BlogPost {
   date: string;
 }
 
-const Blog: React.FC = () => {
+const Blog: React.FC<Blog> = ({ className }: Blog) => {
   const [posts, setPosts] = useState<BlogPost[]>([]);
   const [error, setError] = useState<string | null>(null); // Add an error state
 
@@ -54,20 +58,28 @@ const Blog: React.FC = () => {
     return truncatedContent;
   };
 
+  const { ref, inView } = useInView({
+    /* Optional options */
+    threshold: 0,
+  });
+
   return (
-    <div className={styles["main-container"]} id="blog">
-      <div className={styles["testimonial-section"]}>
-        <div className={styles["container"]}>
-          <div className={styles["main-head"]}>
-            <h6>Blog</h6>
-            <h1>Latest Blog & News</h1>
-            <p>
-              Commodo elementum, sed imperdiet nunc euismod etiam aliquet
-              viverra enim. Adipiscing nunc condimentum risus id. Aquam mattis
-              magna facilisi
-            </p>
-          </div>
-          {/* <div className={styles["work-btn"]}>
+    <div id="blog" ref={ref}>
+      <div className={styles["main-container"]} >
+        <div className={styles["testimonial-section"]}>
+          <div className={styles["container"]}>
+            <div className={styles["main-head"]} >
+              <h6>Blog</h6>
+              <h1 className={inView ? styles["main-heading"] : ""}>
+                Latest Blog & News
+              </h1>
+              <p>
+                Commodo elementum, sed imperdiet nunc euismod etiam aliquet
+                viverra enim. Adipiscing nunc condimentum risus id. Aquam mattis
+                magna facilisi
+              </p>
+            </div>
+            {/* <div className={styles["work-btn"]}>
             <div className={styles["header-btn"]}>
               <CommonButton
                 text="View All Blog"
@@ -76,38 +88,41 @@ const Blog: React.FC = () => {
               />
             </div>
           </div> */}
-        </div>
-        <div className={styles["services"]}>
-          {error ? ( // Check for error and display error message if present
-            <p>Error: {error}</p>
-          ) : (
-            posts.map((post) => (
-              <div className={styles["services-box"]} key={post.id}>
-                <div className={styles["box"]}>
-                  <Image
-                    src="/assets/blog/b1.jpg"
-                    width={0}
-                    height={0}
-                    layout="responsive"
-                    objectFit="contain"
-                    alt="blog one"
-                  />
-                </div>
-                <div className={styles["blog-details"]}>
-                  <p>
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: truncateContent(post.content.rendered, 10),
-                      }}
+          </div>
+          <div className={styles["services"]}>
+            {error ? ( // Check for error and display error message if present
+              <p>Error: {error}</p>
+            ) : (
+              posts.map((post) => (
+                <div className={styles["services-box"]} key={post.id}>
+                  <div className={styles["box"]}>
+                    <Image
+                      src="/assets/blog/b1.jpg"
+                      width={0}
+                      height={0}
+                      layout="responsive"
+                      objectFit="contain"
+                      alt="blog one"
                     />
-                  </p>
-                  <p>
-                    <span className={styles["date"]}>{formatDate(post.date)} </span>
-                  </p>
+                  </div>
+                  <div className={styles["blog-details"]}>
+                    <p>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: truncateContent(post.content.rendered, 10),
+                        }}
+                      />
+                    </p>
+                    <p>
+                      <span className={styles["date"]}>
+                        {formatDate(post.date)}{" "}
+                      </span>
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))
-          )}
+              ))
+            )}
+          </div>
         </div>
       </div>
     </div>

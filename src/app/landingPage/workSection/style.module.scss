@@ -21,6 +21,7 @@
     width:100%;
   }
 }
+
 .container,
 .services {
   max-width: 1170px;
@@ -35,6 +36,7 @@
     flex-direction: column;
   }
 }
+
 .main-head h6,
 .work-title h6 {
   margin-bottom: 16px;
@@ -56,6 +58,7 @@
     font-size: 32px;
   }
 }
+
 .work-title h2,
 .main-head h1,
 .box-title h3 {
@@ -202,6 +205,13 @@
 .box1 {
   animation: fadeInLeft 1s ease-in-out;
   width: 50%;
+  @media screen and (max-width: $breakpoint-md) {
+    width: 100%;
+  }
+
+  @media screen and (max-width: $breakpoint-xs) {
+    width: 100%;
+  }
 }
 
 @keyframes fadeInLeft {
@@ -225,5 +235,19 @@
   }
   to {
     opacity: 1;
+  }
+}
+
+.main-heading {
+  animation: fadeInDown 3s ease forwards;
+}
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

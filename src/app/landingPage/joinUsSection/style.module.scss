@@ -25,6 +25,14 @@
 }
 .about-img {
   display: flex;
+  width: 50%;
+  @media screen and (max-width: $breakpoint-md) {
+    width: 100%;
+  }
+
+  @media screen and (max-width: $breakpoint-xs) {
+    width: 100%;
+  }
 }
 
 .about-content {
@@ -38,7 +46,7 @@
   }
 }
 
-.demo {
+.join-us {
   padding: 100px 135px 0px 64px;
   @media screen and (max-width: $breakpoint-md) {
     padding: 20px 16px 0px 16px;
@@ -50,7 +58,7 @@
 }
 
 .about-content h2 {
-  font-size: 60px;
+  font-size: 50px;
   font-family: $bs-work-sans-font-family;
   font-style: normal;
   font-weight: bold;
@@ -140,19 +148,57 @@
   border-color: var(--e-global-color-88f848e);
   border-radius: 0px 0px 0px 0px;
   padding: 14px 16px 14px 16px;
-  width: 60%;
   border-color: #e2e5f2;
+  @media screen and (max-width: $breakpoint-xs) {
+    width: 100%;
+  }
+}
+
+.name div , .email div , .textarea div {
+  color: red;
+}
+
+.textarea{
+  width: 82%;
+  @media screen and (max-width: $breakpoint-xlg) {
+    width: 100%;
+  }
+  @media screen and (max-width: $breakpoint-xs) {
+    width: 100%;
+  }
 }
 
 .messages {
   width: 100%;
 }
-.textarea {
+.textarea, .checkbox {
   margin-bottom: 10px;
 }
 .form {
   display: flex;
   gap: 5px;
   margin: 10px 0px;
-  
+
+  @media screen and (max-width: $breakpoint-xs) {
+    flex-direction: column;
+  }
+}
+
+.checkbox{
+  // width: 100%;
+  margin-right: 5px;
+}
+
+.main-heading {
+  animation: fadeInDown 3s ease forwards;
+}
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

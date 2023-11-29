@@ -4,15 +4,18 @@ import styles from "./style.module.scss";
 import Image from "next/image";
 import { useInView } from 'react-intersection-observer';
 // import CommonButton from "@/components/buttonComponent/page";
-
-const Testimonial = () => {
+interface TestimonialData {
+  className?: string;
+}
+const Testimonial: React.FC<TestimonialData> = ({ className }: TestimonialData)  => {
 
   const { ref, inView, entry } = useInView({
     /* Optional options */
     threshold: 0,
   });
+  
   return (
-    <div className={styles["main-container"]} ref={ref}>
+    <div className={className ? styles["main-container"]: ""} ref={ref}>
       <div className={styles["testimonial-section"]}>
         <div className={styles["container"]}>
           <div className={styles["main-head"]}>
