@@ -2,9 +2,10 @@ import React, { FunctionComponent, MouseEvent, FormEvent } from "react";
 
 interface CommonButtonProps {
   text: string;
-  onClick?: (event: MouseEvent<HTMLButtonElement> | FormEvent<HTMLFormElement>) => void;
+  onClick?: any;
   type?: "primary" | "secondary" | "submit" | undefined;
-  className?: string; // Allow passing a custom class name
+  className?: string;
+  disabled?: boolean; // Add the disabled property
 }
 
 const CommonButton: FunctionComponent<CommonButtonProps> = ({

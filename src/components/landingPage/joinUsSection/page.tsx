@@ -176,12 +176,12 @@ const JoinUs: React.FC<JoinUsData> = ({ className }: JoinUsData) => {
                   <CommonButton
                     text={isLoading ? "Sending..." : "Submit"}
                     onClick={handleSubmit}
-                    type="primary"                   
+                    type="primary"
                     className={styles["custom-btn"]}
                     disabled={isLoading || !isValid}
                   />
                 </div>
-              </form>              
+              </form>
             </div>
           </div>
         </div>

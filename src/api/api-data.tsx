@@ -1,22 +1,18 @@
-import axios, { AxiosResponse } from "axios";
-import { createApiError } from "./ApiError";
+import axios, { AxiosResponse, AxiosError } from "axios";
+// import { createApiError } from "./ApiError";
 
 const baseUrl = "https://technogetic.com/wp-json/";
-//conatct us post api
-const CONTACT_API = `${baseUrl}contact-form-7/v1/contact-forms`; // Replace with your actual base URL
+const CONTACT_API = `${baseUrl}contact-form-7/v1/contact-forms`;
 
-// Get all Blog
 export const getBlogPosts = async () => {
   try {
     const response = await axios.get(`${baseUrl}wp/v2/posts`);
     return response.data;
-  } catch (error: any) {
-    throw new Error("Error fetching blog posts: " + error.message);
+  } catch (error) {
+    throw new Error("Error fetching blog posts: " + (error as Error).message);
   }
 };
 
-
-//contact us post api
 export const postFormData = async (
   endpoint: string,
   formData: FormData
@@ -24,8 +20,13 @@ export const postFormData = async (
   try {
     const response: AxiosResponse = await axios.post(`${CONTACT_API}${endpoint}`, formData);
     return response;
-  } catch (error: any) {
-    // Specify the type of the error object (any for simplicity, replace with a more specific type if needed)
-    throw createApiError('Error in API response', 500);
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      // Handle AxiosError for more specific error information
+      throw new Error('Error in API response');
+    } else {
+      // Handle other types of errors
+      throw new Error('Unknown error in API response');
+    }
   }
 };

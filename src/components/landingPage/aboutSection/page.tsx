@@ -6,7 +6,7 @@ import CommonButton from "@/components/buttonComponent/page";
 import { useInView } from "react-intersection-observer";
 import ReadMoreButton from "@/components/commonComponents/readMore/page";
 import AutoNumberCounter from "@/components/commonComponents/autoNumberCounter";
-import { AboutData } from "@/models/AboutModel";
+import { AboutData } from "@/modules/AboutModel";
 
 const AboutSection: React.FC<AboutData> = ({
   className,

@@ -1,8 +1,9 @@
 "use client";
 import React from "react";
-import styles from "@/app/landingPage/bannerSection/style.module.scss";
+// import styles from "@/app/landingPage/bannerSection/style.module.scss";
 import CommonButton from "@/components/buttonComponent/page";
 import { useInView } from 'react-intersection-observer';
+import styles from '@/components/landingPage/bannerSection/style.module.scss'
   
 const BannerSection = () => {
   const { ref, inView, entry } = useInView({
