@@ -8,7 +8,13 @@ import fs from 'fs';
 import authMiddleware from '../../server/middleware/tokenVerify';
 
 // Configure multer for file upload
-const upload = multer({ dest: './public/Images' });
+const storage = multer.diskStorage({
+  filename: (req, file, cb) => {
+    const name = Date.now() + '_' + file.originalname;
+    cb(null, name);
+  }
+});
+const upload = multer({ storage: storage });
 
 // Configure API endpoint to disable default body parsing
 export const config = {
