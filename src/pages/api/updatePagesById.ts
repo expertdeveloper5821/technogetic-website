@@ -1,10 +1,8 @@
-// Import necessary modules and models
 import { NextApiRequest, NextApiResponse } from 'next';
 import connect from '../../server/config/db';
 import Page from '../../server/models/pages';
 import multer from 'multer';
 import { cloudinary } from '../../server/config/cloudinary';
-import fs from 'fs';
 import authMiddleware from '../../server/middleware/tokenVerify';
 
 // Configure multer for file upload
@@ -29,20 +27,6 @@ async function uploadImages(files: any[]) {
   return Promise.all(uploadPromises);
 }
 
-// Function to unlink (delete) files from the local server
-async function unlinkFiles(files: any[]) {
-  const unlinkPromises = files.map((file: { path: fs.PathLike; }) => {
-    return new Promise<void>((resolve) => {
-      fs.unlink(file.path, (err) => {
-        if (err) {
-          console.error("Error unlinking file:", err);
-        }
-        resolve();
-      });
-    });
-  });
-  return Promise.all(unlinkPromises);
-}
 
 // Function to update existing data and save it to the database
 async function updateExistingData(
@@ -63,6 +47,7 @@ async function updateExistingData(
   const updateObject = {
     $set: {
       'pageSlug': reqBody.pageSlug,
+      'pageName': reqBody.pageName,
       'metaDetails.title': reqBody.metaDetails.title,
       'metaDetails.description': reqBody.metaDetails.description,
       'metaDetails.keywords': reqBody.metaDetails.keywords || [],
@@ -167,9 +152,6 @@ export default async function updateContent(req: NextApiRequest, res: NextApiRes
 
     // Process and save updated data to the database
     const updatedData = await updateExistingData(req.body, sectionsImagesUploads, subSectionsImagesUploads, imgUploads, pageId, sectionId);
-
-    // Delete uploaded files from the server
-    await unlinkFiles(files);
 
     // Respond with success message and the updated data
     return res.status(200).json({ message: 'Update successfully!', updatedData });
