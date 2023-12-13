@@ -4,6 +4,6 @@
   "/landingPage/page": "app/landingPage/page.js",
   "/page": "app/page.js",
   "/dashboard/page": "app/dashboard/page.js",
-  "/dashboard/section/page": "app/dashboard/section/page.js",
-  "/dashboard/subSection/page": "app/dashboard/subSection/page.js"
+  "/dashboard/subSection/page": "app/dashboard/subSection/page.js",
+  "/dashboard/section/page": "app/dashboard/section/page.js"
 }
