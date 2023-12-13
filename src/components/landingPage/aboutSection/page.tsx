@@ -7,6 +7,8 @@ import { useInView } from "react-intersection-observer";
 import ReadMoreButton from "@/components/commonComponents/readMore/page";
 import AutoNumberCounter from "@/components/commonComponents/autoNumberCounter";
 import { AboutData } from "@/modules/AboutModel";
+import { motion } from 'framer-motion';
+
 
 const AboutSection: React.FC<AboutData> = ({
   className,
@@ -56,6 +58,11 @@ const AboutSection: React.FC<AboutData> = ({
   });
 
   return (
+    <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+  >
     <div className={className}>
       <div className={styles["main-container"]}>
         <div className={styles["container"]}>
@@ -124,7 +131,8 @@ const AboutSection: React.FC<AboutData> = ({
           </div>
         </div>
       </div>
-    </div>
+      </div>
+      </motion.div>
   );
 };
 

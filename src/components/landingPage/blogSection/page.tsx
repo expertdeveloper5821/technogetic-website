@@ -6,9 +6,11 @@ import { getBlogPosts } from "@/api/api-data";
 import { useInView } from "react-intersection-observer";
 
 interface Blog {
-  className: string;}
+  className: string;
+}
 
 interface BlogPost {
+  [x: string]: any;
   id?: number;
   title?: {
     rendered: string;
@@ -27,10 +29,8 @@ const Blog: React.FC<Blog> = ({ className }: Blog) => {
     const fetchData = async () => {
       try {
         const data = await getBlogPosts();
-        // console.log("data", data);
         setPosts(data);
       } catch (error) {
-        // console.error((error as Error).message);
         setError("Error fetching blog posts. Please try again."); // Set the error message
       }
     };
@@ -63,12 +63,14 @@ const Blog: React.FC<Blog> = ({ className }: Blog) => {
     threshold: 0,
   });
 
+  console.log("", posts);
+
   return (
     <div id="blog" ref={ref}>
-      <div className={styles["main-container"]} >
+      <div className={styles["main-container"]}>
         <div className={styles["testimonial-section"]}>
           <div className={styles["container"]}>
-            <div className={styles["main-head"]} >
+            <div className={styles["main-head"]}>
               <h6>Blog</h6>
               <h1 className={inView ? styles["main-heading"] : ""}>
                 Latest Blog & News
@@ -90,23 +92,33 @@ const Blog: React.FC<Blog> = ({ className }: Blog) => {
           </div> */}
           </div>
           <div className={styles["services"]}>
-            {error ? ( // Check for error and display error message if present
-              <p>Error: {error}</p>
-            ) : (
-              posts.map((post) => (
+            {posts &&
+              posts.slice(-4).map((post) => (
                 <div className={styles["services-box"]} key={post.id}>
                   <div className={styles["box"]}>
                     <Image
-                      src="/assets/blog/b1.jpg"
+                      src={
+                        post?.featured_image_url
+                          ? post?.featured_image_url
+                          : "/assets/logo/logo.png"
+                      }
                       width={0}
                       height={0}
                       layout="responsive"
                       objectFit="contain"
-                      alt="blog one"
+                      alt="Technogetic"
                     />
+                    {/* <Image
+                      src={post.featured_image_url}
+                      width={0}
+                      height={0}
+                      layout="responsive"
+                      objectFit="contain"
+                      alt="Technogetic"
+                    /> */}
                   </div>
                   <div className={styles["blog-details"]}>
-                    <p>
+                    <p className={styles["blog-content"]}>
                       <div
                         dangerouslySetInnerHTML={{
                           __html: truncateContent(post.content.rendered, 10),
@@ -120,8 +132,7 @@ const Blog: React.FC<Blog> = ({ className }: Blog) => {
                     </p>
                   </div>
                 </div>
-              ))
-            )}
+              ))}
           </div>
         </div>
       </div>

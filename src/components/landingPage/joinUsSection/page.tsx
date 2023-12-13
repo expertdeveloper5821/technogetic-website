@@ -27,6 +27,14 @@ const JoinUs: React.FC<JoinUsData> = ({ className }: JoinUsData) => {
   };
 
   const {
+    // values,
+    // touched,
+    // errors,
+    // handleSubmit,
+    // handleChange,
+    // handleBlur,
+    // setFieldValue,
+    // isValid,
     values,
     touched,
     errors,
@@ -158,7 +166,7 @@ const JoinUs: React.FC<JoinUsData> = ({ className }: JoinUsData) => {
                     <div className="text-red-600 text-xs">{errors.message}</div>
                   )}
                 </div>
-                <div className={styles[""]}>
+                <div className={styles["checkbox"]}>
                   <input
                     type="checkbox"
                     className={styles["checkbox"]}
@@ -168,8 +176,14 @@ const JoinUs: React.FC<JoinUsData> = ({ className }: JoinUsData) => {
                     onChange={() =>
                       setFieldValue("acceptTerms", !values.acceptTerms)
                     }
+                    onBlur={handleBlur}
                   />
                   <span>I agree to the data protection regulations</span>
+                  {errors.acceptTerms && touched.acceptTerms && (
+                    <div className="text-red-600 text-xs">
+                      {errors.acceptTerms}
+                    </div>
+                  )}
                 </div>
 
                 <div className={styles["header-btn"]}>
