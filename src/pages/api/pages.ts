@@ -3,12 +3,17 @@ import connect from '../../server/config/db';
 import Page from '../../server/models/pages';
 import multer from 'multer';
 import { cloudinary } from '../../server/config/cloudinary';
-import fs from 'fs';
 import authMiddleware from '../../server/middleware/tokenVerify';
 
 
 // Configure multer for file upload
-const upload = multer({ dest: './public/Images' });
+const storage = multer.diskStorage({
+    filename: (req, file, cb) => {
+      const name = Date.now() + '_' + file.originalname;
+      cb(null, name);
+    }
+  });
+const upload = multer({ storage: storage });
 
 // Configure API endpoint to disable default body parsing
 export const config = {
@@ -23,20 +28,6 @@ async function uploadImages(files: any[]) {
     return Promise.all(uploadPromises);
 }
 
-// Function to unlink (delete) files from the local server
-async function unlinkFiles(files: any[]) {
-    const unlinkPromises = files.map((file: { path: fs.PathLike; }) => {
-        return new Promise<void>((resolve) => {
-            fs.unlink(file.path, (err) => {
-                if (err) {
-                    console.error("Error unlinking file:", err);
-                }
-                resolve();
-            });
-        });
-    });
-    return Promise.all(unlinkPromises);
-}
 
 // Function to process new data and save it to the database
 async function processNewData(
@@ -180,8 +171,6 @@ export default async function newContent(req: NextApiRequest, res: NextApiRespon
 
             existingData = await updateExistingData(existingData, sectionsImagesUploads, subSectionsImagesUploads, sections);
 
-            // Delete uploaded files from the server
-            await unlinkFiles(files);
         } else {
             // If data doesn't exist, process new data and save it to the database
             const sectionsImagesUploads = await uploadImages(sectionsImages);
@@ -197,9 +186,6 @@ export default async function newContent(req: NextApiRequest, res: NextApiRespon
 
             // Process and save new data to the database
             const newData = await processNewData(req.body, sectionsImagesUploads, subSectionsImagesUploads, imgUploads);
-
-            // Delete uploaded files from the server
-            await unlinkFiles(files);
 
             // Respond with success message and the new data
             return res.status(201).json({ message: 'Submit successfully!', newData });
