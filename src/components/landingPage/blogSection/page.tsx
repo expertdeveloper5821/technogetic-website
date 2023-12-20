@@ -96,7 +96,7 @@ const Blog: React.FC<Blog> = ({ className }: Blog) => {
               posts.slice(-4).map((post) => (
                 <div className={styles["services-box"]} key={post.id}>
                   <div className={styles["box"]}>
-                    <Image
+                    {/* <Image
                       src={
                         post?.featured_image_url
                           ? post?.featured_image_url
@@ -107,7 +107,7 @@ const Blog: React.FC<Blog> = ({ className }: Blog) => {
                       layout="responsive"
                       objectFit="contain"
                       alt="Technogetic"
-                    />
+                    /> */}
                     {/* <Image
                       src={post.featured_image_url}
                       width={0}

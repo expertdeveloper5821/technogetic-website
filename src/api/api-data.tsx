@@ -4,6 +4,9 @@ import axios, { AxiosResponse, AxiosError } from "axios";
 const baseUrl = "https://technogetic.com/wp-json/";
 const CONTACT_API = `${baseUrl}contact-form-7/v1/contact-forms`;
 
+const baseURL = "http://localhost:3000";
+const version = "v1";
+
 export const getBlogPosts = async () => {
   try {
     const response = await axios.get(`${baseUrl}wp/v2/posts`);
@@ -30,3 +33,29 @@ export const postFormData = async (
     }
   }
 };
+
+
+// export const fetchPageData = async (id: string) => {
+//   try {
+//     const response = await axios.get(`${baseURL}/${version}/getPagesById?pageId=${id}`);
+    
+//     return response.data;
+//     // console.log("response",response.data)
+//   } catch (error) {
+//     console.error('Error fetching page data:', error);
+//     throw error; // Propagate the error so that the calling code can handle it
+//   }
+// };
+
+export const getByIdApi = async (baseURL: string, version: string, pageId: string) => {
+  try {
+    const response = await axios.get(`${baseURL}/${version}/getPagesById`, {
+      params: { pageId },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching data by ID:', error);
+    throw new Error('Failed to fetch data by ID');
+  }
+};
+

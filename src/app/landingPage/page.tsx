@@ -1,5 +1,5 @@
 "use client";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import gsap, { ScrollTrigger } from 'gsap/all';
 
 import Header from "@/components/commonComponents/header";
@@ -18,12 +18,24 @@ import Head from "next/head";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import { AnimatePresence } from 'framer-motion';
+import { getDataById } from '@/utils/api';
+import { useRouter } from 'next/router';
+
+interface LandingPageProps {
+  pageProps: any; // Adjust the type based on your actual pageProps structure
+  router: any; // Adjust the type based on your actual router structure
+}
+
+interface RouteParams {
+  pageIdFromRoute: string;
+}
+
 
 gsap.registerPlugin(ScrollTrigger);
 
-const LandingPage = ({pageProps, router}: any) => {
-  useEffect(() => {
-
+const LandingPage: React.FC<{ data: any }> = ({ data }) => {
+ 
+  useEffect(() => {    
     // const handleScroll = debounce(() => {
       const elements = document.querySelectorAll('.scroll-trigger') as NodeListOf<HTMLElement>;
 
@@ -42,7 +54,7 @@ const LandingPage = ({pageProps, router}: any) => {
         });
       });   
   }, []);
-
+  
   return (
     <>
       <ToastContainer />
@@ -59,9 +71,9 @@ const LandingPage = ({pageProps, router}: any) => {
       <div>
         <div className={styles["main-section"]}>
           <Header />
-          <BannerSection />
+          <BannerSection title={''} description={''} sectionsImages={[]} />
         </div>
-        <AboutSection className="scroll-trigger" text="Your about section text goes here." maxLength={100} />
+        <AboutSection className="scroll-trigger" text="Your about section text goes here." maxLength={100} title={''} subTitle={''} description={''} shortDescription={''} sectionsImages={[]} />
         <ServiceSection className="scroll-trigger" />
         <ClientSection className="scroll-trigger" />
         <WorkSection className="scroll-trigger" />
@@ -76,3 +88,7 @@ const LandingPage = ({pageProps, router}: any) => {
 };
 
 export default LandingPage;
+
+
+
+

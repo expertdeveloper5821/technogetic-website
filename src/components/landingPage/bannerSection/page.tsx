@@ -4,12 +4,16 @@ import React from "react";
 import CommonButton from "@/components/buttonComponent/page";
 import { useInView } from 'react-intersection-observer';
 import styles from '@/components/landingPage/bannerSection/style.module.scss'
-  
-const BannerSection = () => {
+interface BannerSectionProps {
+  title: string;
+  description: string;
+  sectionsImages: string[];
+}
+const BannerSection: React.FC<BannerSectionProps> = ({ title, description, sectionsImages }) => {
   const { ref, inView, entry } = useInView({
-    /* Optional options */
     threshold: 0,
   });
+
   return (
     <div className={styles["banner-section"]}>
       <div className={styles["banner-subsection"]}>

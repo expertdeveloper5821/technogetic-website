@@ -3,4 +3,9 @@ export interface AboutData {
   text: string;
   maxLength: number;
   // Add other properties if needed
+  title: string;
+  subTitle: string;
+  description: string;
+  shortDescription: string;
+  sectionsImages: string[];
 }
