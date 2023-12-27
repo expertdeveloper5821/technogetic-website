@@ -12,8 +12,10 @@ import { motion } from 'framer-motion';
 
 const AboutSection: React.FC<AboutData> = ({
   className,
-  text,
-  maxLength,
+  description,
+  subTitle,
+  title,
+  sectionsImages,
 }: AboutData) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const triggerRef = useRef<HTMLDivElement>(null);
@@ -34,23 +36,6 @@ const AboutSection: React.FC<AboutData> = ({
     };
     return [lettersRef, setRef] as const;
   }
-
- 
-
-  const paragraphText = `
-    Commodo elementum, sed imperdiet nunc euismod etiam aliquet
-    viverra enim. Adipiscing nunc condimentum risus id. Aquam mattis
-    magna facilisi fermentum, euismod vitae. Porttitor sit tincidunt
-    dictum facilisi eget orci velit. Nulla laoreet nunc gravida augue
-    aenean sed elementum, in.
-  `;
-
-  const displayText =
-    typeof text === "string"
-      ? isExpanded
-        ? text
-        : `${text.slice(0, maxLength)}...`
-      : "";
 
   const { ref, inView } = useInView({
     /* Optional options */
@@ -105,24 +90,37 @@ const AboutSection: React.FC<AboutData> = ({
       <div className={styles["about-us"]} ref={ref}>
         <div className={styles["about"]}>
           <div className={inView ? styles["about-img"] : " "}>
-            <Image
+            {/* <Image
               src="/assets/about/about.jpg"
               alt="about us "
               width={550}
               height={550}
               layout="responsive"
-            />
+            /> */}
+              {sectionsImages && sectionsImages.length > 0 ? (
+                // Display images using the map function
+                sectionsImages.map((image, index) => (
+                  <Image
+                    key={index}
+                    src={image}
+                    alt={`About image ${index + 1}`}
+                    width={550}
+                    height={550}
+                    layout="responsive"
+                  />
+                ))
+              ) : null}
           </div>
           <div
             className={inView ? styles["about-content"] : ""}
             ref={triggerRef}
           >
-            <h6 ref={contentRef}>About us</h6>
-            <h2>We’re On Mission To Help Business Grow Faster Thanever.</h2>
-            <p>{displayText}</p>
+            <h6 ref={contentRef}>{subTitle}</h6>
+            <h2>{title}</h2>
+            {/* <p>{displayText}</p> */}
             <div className={styles["header-btn"]}>
               <ReadMoreButton
-                text={paragraphText}
+                text={description}
                 maxLength={100}
                 isExpanded={isExpanded}
                 toggleExpansion={toggleExpansionHandler}

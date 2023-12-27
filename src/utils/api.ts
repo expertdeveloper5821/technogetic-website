@@ -2,14 +2,22 @@ import axios from 'axios';
 
 
 const baseURL = "http://localhost:3000";
-const version = "v1";
+const version = "api";
 
 
-const apiUrl = 'http://localhost:3000'; // Replace with your API endpoint
+// export const getDataById = async (pageId: string) => {
+//   try {
+//     const response = await axios.get(`${baseURL}/${version}/getPagesById/${pageId}`);
+//     return response.data;
+//   } catch (error) {
+//     console.error('Error fetching data:', error);
+//     throw error;
+//   }
+// };
 
-export const getDataById = async (id: string) => {
+export const fetchDataById = async <T>(pageId: string): Promise<T> => {
   try {
-    const response = await axios.get(`${apiUrl}/${version}/getPagesById/${id}`);
+    const response = await axios.get<T>(`${baseURL}/${version}/getPagesById/${pageId}`);
     return response.data;
   } catch (error) {
     console.error('Error fetching data:', error);
