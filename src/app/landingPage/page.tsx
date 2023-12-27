@@ -30,12 +30,12 @@ const LandingPage = () => {
         start: 'top 80%',
         end: 'bottom 10%',
         once: true,
-        onEnter: () => {
-          gsap.to(element, { opacity: 1, y: 0, duration: 1 });
-        },
-        onLeaveBack: () => {
-          gsap.to(element, { opacity: 0, y: -50, duration: 1 });
-        },
+        // onEnter: () => {
+        //   gsap.to(element, { opacity: 1, y: 0, duration: 1 });
+        // },
+        // onLeaveBack: () => {
+        //   gsap.to(element, { opacity: 0, y: -50, duration: 1 });
+        // },
       });
     });
   }, []);
